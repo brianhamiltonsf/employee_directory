@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206043401) do
+ActiveRecord::Schema.define(version: 20150206050226) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -20,5 +20,7 @@ ActiveRecord::Schema.define(version: 20150206043401) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "departments", ["name"], name: "index_departments_on_name", unique: true
 
 end
