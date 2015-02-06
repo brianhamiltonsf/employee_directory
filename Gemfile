@@ -32,6 +32,20 @@ group :development do
   gem 'sqlite3'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
+  gem 'faker', '~> 1.4.3'
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '~> 2.4.3'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'launchy', '~> 2.4.2'
+end
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
