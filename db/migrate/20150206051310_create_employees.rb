@@ -2,7 +2,6 @@ class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
       t.string :firstname
-      t.string :string
       t.string :lastname
       t.string :phone
       t.string :email

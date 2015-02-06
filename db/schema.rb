@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20150206051310) do
 
   create_table "employees", force: true do |t|
     t.string   "firstname"
-    t.string   "string"
     t.string   "lastname"
     t.string   "phone"
     t.string   "email"

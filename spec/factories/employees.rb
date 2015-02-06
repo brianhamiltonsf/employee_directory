@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :employee do
-    firstname "MyString"
-    string "MyString"
+    firstname {}
     lastname "MyString"
     phone "MyString"
     email "MyString"
