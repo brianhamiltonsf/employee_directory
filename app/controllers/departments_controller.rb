@@ -15,7 +15,7 @@ class DepartmentsController < ApplicationController
 
   def create
     @department = Department.new(department_params)
-    if @deparment.save
+    if @department.save
       flash[:notice] = "#{@department.name} was successfully created."
       redirect_to departments_path
     else
@@ -48,7 +48,7 @@ class DepartmentsController < ApplicationController
   end
 
   def department_params
-    params.require(:department).permit(:names,:description,:leader_id)
+    params.require(:department).permit(:name,:description,:leader_id)
   end
 
 end

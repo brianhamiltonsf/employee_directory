@@ -1,6 +1,6 @@
 <div>
   <p>
-    Name: <%= @department.name %><span><%= 'Edit', edit_department_path(@department) %></span>
+    Name: <%= @department.name %><span><%= link_to 'Edit', edit_department_path(@department) %></span>
   </p>
   <p>
     Description: <%= @department.description %>
