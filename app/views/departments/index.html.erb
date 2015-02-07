@@ -1,3 +1,4 @@
+<% provide(:title, 'All departments') %>
 <table>
   <tr>
     <th>Department Name</th>
@@ -10,7 +11,7 @@
       <td><%= link_to dep.name, department_path(dep) %></td>
       <td><%= dep.get_owner %></td>
       <td><%= link_to 'Edit', edit_department_path(dep) %></td>
-      <td><%= link_to 'Delete', dep, method: delete, data: { confirm: 'are you sure>' } %></td>
+      <td><%= link_to 'Delete', dep, method: delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,32 @@
+<div>
+  <p>
+    Name: <%= @employee.name %>
+  </p>
+  <p>
+    Title: <%= @employee.title %>
+  </p>
+  <p>
+    Department: <%= Department.find(@employee.department_id).name %>
+  </p>
+  <p>
+    Address: <%= @employee.address1 %> <br /> <%= @employee.address2 %>
+  </p>
+  <p>
+    Office Number: <%= @employee.office_number %>
+  </p>
+  <p>
+    City: <%= @employee.city %>
+  </p>
+  <p>
+    State: <%= @employee.state %>
+  </p>
+  <p>
+    Postal Code: <%= @employee.zip %>
+  </p>
+  <p>
+    Phone: <%= @employee.phone %>
+  </p>
+  <p>
+    Email Address: <%= mail_to @employee.email %>
+  </p>
+</div>

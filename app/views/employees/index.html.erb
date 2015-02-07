@@ -1,0 +1,19 @@
+<% provide(:title, 'All employees') %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Department</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @employees.each do |emp| %>
+    <tr>
+      <td><%= emp.name %></td>
+      <td><%= emp.title %></td>
+      <td><%= Department.find(emp.department_id).name %></td>
+      <td><%= link_to 'Edit', edit_employee_path(emp) </td>
+      <td><%= link_to 'Delete', emp, method: delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
