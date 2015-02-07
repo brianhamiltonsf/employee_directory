@@ -1,0 +1,11 @@
+<div>
+  <p>
+    Name: <%= @department.name %><span><%= 'Edit', edit_department_path(@department) %></span>
+  </p>
+  <p>
+    Description: <%= @department.description %>
+  </p>
+  <p>
+    Owner: <%= @department.get_owner %>
+  </p>
+</div>

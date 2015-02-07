@@ -1,0 +1,10 @@
+<div>
+  <%= form_for @department do |f| %>
+    <%= f.label :name, 'Department Name' %>
+    <%= f.text_field :name %>
+    <%= f.label :description, 'Department Description' %>
+    <%= f.text_area :description %>
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', departments_path %>
+  <% end %>
+</div>
