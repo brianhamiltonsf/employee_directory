@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207013159) do
+ActiveRecord::Schema.define(version: 20150207033934) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20150207013159) do
     t.integer  "department_id"
   end
 
+  add_index "employees", ["department_id"], name: "index_employees_on_department_id"
   add_index "employees", ["email"], name: "index_employees_on_email", unique: true
+  add_index "employees", ["firstname"], name: "index_employees_on_firstname"
+  add_index "employees", ["lastname"], name: "index_employees_on_lastname"
+  add_index "employees", ["manager_id"], name: "index_employees_on_manager_id"
+  add_index "employees", ["phone"], name: "index_employees_on_phone"
 
 end
