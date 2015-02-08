@@ -1,0 +1,43 @@
+$link: darken(#428bca, 6.5%);
+
+textarea {
+  resize: none;
+}
+
+input[type='submit'] {
+  margin-right: .8em;
+}
+
+input[type='checkbox'] {
+  margin-top: .7em;
+}
+
+div.submit {
+  margin-top: 2em;
+  margin-left: 11.6em;
+
+  a:hover {
+    text-decoration: none;
+    border-bottom: 1px dotted $link;
+  }
+}
+
+.form-control {
+  width: 30%;
+}
+
+.well {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  padding: 2em 5em;
+}
+
+.control-label {
+  padding-top: .5em;
+}
+
+#check_here {
+  margin-left: .5em;
+  position: relative;
+  top: .2em;
+}

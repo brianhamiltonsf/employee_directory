@@ -1,31 +1,68 @@
-<%= form_for @employee do |f| %>
-  <%= f.label :firstname, 'First Name' %>
-  <%= f.text_field :firstname %>
-  <%= f.label :lastname, 'Last Name' %>
-  <%= f.text_field :lastname %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :address1, "Address" %>
-  <%= f.text_field :address1 %>
-  <%= f.text_field :address2 %>
-  <%= f.label :office_number %>
-  <%= f.text_field :office_number %>
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-  <%= f.label :state %>
-  <%= f.text_field :state %>
-  <%= f.label :zip %>
-  <%= f.text_field :zip %>
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-  <%= f.label :email, 'Email Address' %>
-  <%= f.text_field :email %>
-  <%= f.label :manager, "Manager?" %>
-  <%= f.text_field :manager %>
-  <%= f.label :manager_id, "Manager" %>
-  <%= f.text_field :manager %>
-  <%= f.label :department_id, 'Department' %>
-  <%= f.text_field :department_id %>
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Cancel', employees_path %>
-<% end %>
+<div class="well">
+  <%= form_for @employee, html: { class: 'form-horizontal' } do |f| %>
+    <div class='form-group'>
+      <%= f.label :firstname, 'First Name', class: 'col-md-2 control-label' %>
+      <%= f.text_field :firstname, class: 'form-control', placeholder: 'employee first name...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :lastname, 'Last Name', class: 'col-md-2 control-label' %>
+      <%= f.text_field :lastname, class: 'form-control', placeholder: 'employee last name...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :title, class: 'col-md-2 control-label' %>
+      <%= f.text_field :title, class: 'form-control', placeholder: 'employee title...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :address1, "Address", class: 'col-md-2 control-label' %>
+      <%= f.text_field :address1, class: 'form-control', placeholder: 'employee address...' %>
+    </div>
+    <div class='form-group'>
+      <span class='col-md-2'></span>
+      <%= f.text_field :address2, class: 'form-control', placeholder: 'employee address (continued)...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :office_number, class: 'col-md-2 control-label' %>
+      <%= f.text_field :office_number, class: 'form-control', placeholder: 'employee office number...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :city, class: 'col-md-2 control-label' %>
+      <%= f.text_field :city, class: 'form-control', placeholder: 'employee city...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :state, class: 'col-md-2 control-label' %>
+      <%= f.select :state, options_for_select(us_states), {}, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :zip, class: 'col-md-2 control-label' %>
+      <%= f.text_field :zip, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :phone, class: 'col-md-2 control-label' %>
+      <%= f.text_field :phone, class: 'form-control' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :email, 'Email Address', class: 'col-md-2 control-label' %>
+      <%= f.text_field :email, class: 'form-control', placeholder: 'employee email address...' %>
+    </div>
+    <div class='form-group'>
+      <%= f.label :manager, "Manager?", class: 'col-md-2 control-label' %>
+      <%= f.check_box :manager %> <span class="small" id="check_here">Check here if this employee is a manager.</span>
+    </div>
+    <% unless Employee.find_by(:manager).nil? %>
+      <div class='form-group'>
+        <%= f.label :manager_id, "Manager", class: 'col-md-2 control-label' %>
+        <%= f.select :manager_id, all_managers, {}, class: 'form-control' %>
+      </div>
+    <% end %>
+    <% if Department.any? %>
+      <div class='form-group'>
+        <%= f.label :department_id, 'Department', class: 'col-md-2 control-label' %>
+        <%= f.select :department_id, all_departments, {}, class: 'form-control' %>
+      </div>
+    <% end %>
+    <div class="submit">
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', employees_path %>
+    </div>
+  <% end %>
+</div>

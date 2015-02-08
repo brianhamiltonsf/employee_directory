@@ -27,4 +27,5 @@ class Employee < ActiveRecord::Base
   def name
     "#{firstname} #{lastname}"
   end
+
 end
