@@ -4,6 +4,7 @@
     <th>Name</th>
     <th>Title</th>
     <th>Department</th>
+    <th>Location</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,7 +12,8 @@
     <tr>
       <td><%= emp.name %></td>
       <td><%= emp.title %></td>
-      <td><%= Department.find(emp.department_id).name %></td>
+      <td><%= Department.find(emp.department_id).name unless emp.department_id.nil? %></td>
+      <td><%= Location.find(emp.location_id).name unless emp.location_id.nil? %></td>
       <td><%= link_to 'Edit', edit_employee_path(emp) %></td>
       <td><%= link_to 'Delete', emp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

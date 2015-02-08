@@ -1,0 +1,20 @@
+<div>
+  <p>
+    Name: <%= @location.name %> <span><%= link_to 'Edit', edit_location_path(@location) %></span>
+  </p>
+  <p>
+    Address: <%= @location.address1 %>
+  </p>
+  <p>
+    Address(cont): <%= @location.address2 %>
+  </p>
+  <p>
+    City: <%= @location.city %>
+  </p>
+  <p>
+    State: <%= @location.state %>
+  </p>
+  <p>
+    Postal Code: <%= @location.zip %>
+  </p>
+</div>
