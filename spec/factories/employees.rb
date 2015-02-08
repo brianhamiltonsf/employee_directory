@@ -6,15 +6,11 @@ FactoryGirl.define do
     lastname { Faker::Name.last_name }
     phone "5551234567"
     email { Faker::Internet.email }
-    address1 { Faker::Address.street_address }
-    address2 { Faker::Address.secondary_address }
-    city { Faker::Address.city }
-    state { Faker::Address.state_abbr }
-    zip "12345"
     office_number "A101"
     title 'Manager'
     manager_id 1
     manager false
     department_id 1
+    location_id 1
   end
 end

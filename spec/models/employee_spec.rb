@@ -18,12 +18,6 @@ RSpec.describe Employee, :type => :model do
     expect(emp.errors[:lastname]).to include("can't be blank")
   end
 
-  it "is invalid without a department id" do
-    emp = build(:employee, department_id: nil)
-    emp.valid?
-    expect(emp.errors[:department_id]).to include("can't be blank")
-  end
-
   it "belongs to a department" do
     expect(build(:employee)).to belong_to(:department)
   end
@@ -57,24 +51,6 @@ RSpec.describe Employee, :type => :model do
     expect(emp.errors[:email]).to include('is too long (maximum is 40 characters)')
   end
 
-  it "is invalid with a city name longer than 40 characters" do
-    emp = build(:employee, city: 'a' * 41)
-    emp.valid?
-    expect(emp.errors[:city]).to include('is too long (maximum is 40 characters)')
-  end
-
-  it "is invalid with a street address longer than 40 characters" do
-    emp = build(:employee, address1: 'a' * 41)
-    emp.valid?
-    expect(emp.errors[:address1]).to include('is too long (maximum is 40 characters)')
-  end
-
-  it "is invalid with a secondary address longer than 40 characters" do
-    emp = build(:employee, address2: 'a' * 41)
-    emp.valid?
-    expect(emp.errors[:address2]).to include('is too long (maximum is 40 characters)')
-  end
-
   it "is invalid with a title longer than 30 charaacters" do
     emp = build(:employee, title: 'a' * 31)
     emp.valid?
@@ -91,38 +67,6 @@ RSpec.describe Employee, :type => :model do
     emp = build(:employee, phone: 'a' * 11)
     emp.valid?
     expect(emp.errors[:phone]).to include('is too long (maximum is 10 characters)')
-  end
-
-  it "is invalid with an invalid state" do
-    states = ['AAA', 'A1', 'A']
-    states.each do |state|
-      emp = build(:employee, state: state)
-      emp.valid?
-      expect(emp.errors[:state]).to include("#{state} is not a valid state")
-    end
-  end
-
-  it "is valid with a valid state" do
-    states = ['AK', 'NY', 'CA', 'OR']
-    states.each do |state|
-      expect(build(:employee, state: state)).to be_valid
-    end
-  end
-
-  it "is invalid with an invalid zip code" do
-    zips = ['1234', '123456', '123456-9876', '12345-988', 'a', '12345-4321a']
-    zips.each do |zip|
-      emp = build(:employee, zip: zip)
-      emp.valid?
-      expect(emp.errors[:zip]).to include("#{zip} is not a valid zip code")
-    end
-  end
-
-  it "is valid with a valid zip code" do
-    zips = ['12345', '123456789']
-      zips.each do |zip|
-        expect(build(:employee, zip: zip)).to be_valid
-      end
   end
 
   it "is invalid with an invalid phone number" do

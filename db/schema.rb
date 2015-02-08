@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208045017) do
+ActiveRecord::Schema.define(version: 20150208055420) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -28,11 +28,6 @@ ActiveRecord::Schema.define(version: 20150208045017) do
     t.string   "lastname"
     t.string   "phone"
     t.string   "email"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
     t.string   "office_number"
     t.string   "title"
     t.integer  "manager_id"
@@ -40,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150208045017) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.integer  "location_id"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"
@@ -48,5 +44,14 @@ ActiveRecord::Schema.define(version: 20150208045017) do
   add_index "employees", ["lastname"], name: "index_employees_on_lastname"
   add_index "employees", ["manager_id"], name: "index_employees_on_manager_id"
   add_index "employees", ["phone"], name: "index_employees_on_phone"
+
+  create_table "locations", force: true do |t|
+    t.string "name"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+  end
 
 end

@@ -1,0 +1,54 @@
+require 'rails_helper'
+
+RSpec.describe Location, :type => :model do
+
+    it "is invalid with a city name longer than 40 characters" do
+      loc = build(:location, city: 'a' * 41)
+      loc.valid?
+      expect(loc.errors[:city]).to include('is too long (maximum is 40 characters)')
+    end
+
+    it "is invalid with a street address longer than 40 characters" do
+      loc = build(:location, address1: 'a' * 41)
+      loc.valid?
+      expect(loc.errors[:address1]).to include('is too long (maximum is 40 characters)')
+    end
+
+    it "is invalid with a secondary address longer than 40 characters" do
+      loc = build(:location, address2: 'a' * 41)
+      loc.valid?
+      expect(loc.errors[:address2]).to include('is too long (maximum is 40 characters)')
+    end
+
+    it "is invalid with an invalid state" do
+      states = ['AAA', 'A1', 'A']
+      states.each do |state|
+        loc = build(:location, state: state)
+        loc.valid?
+        expect(loc.errors[:state]).to include("Please select a valid state")
+      end
+    end
+
+    it "is valid with a valid state" do
+      states = ['AK', 'NY', 'CA', 'OR']
+      states.each do |state|
+        expect(build(:location, state: state)).to be_valid
+      end
+    end
+
+    it "is invalid with an invalid zip code" do
+      zips = ['1234', '123456', '123456-9876', '12345-988', 'a', '12345-4321a']
+      zips.each do |zip|
+        loc = build(:location, zip: zip)
+        loc.valid?
+        expect(loc.errors[:zip]).to include("#{zip} is not a valid zip code")
+      end
+    end
+
+    it "is valid with a valid zip code" do
+      zips = ['12345', '123456789']
+        zips.each do |zip|
+          expect(build(:location, zip: zip)).to be_valid
+        end
+    end
+end
