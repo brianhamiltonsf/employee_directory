@@ -13,4 +13,6 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "_global.scss";
+@import "global";
+@import "form";
+@import "header";

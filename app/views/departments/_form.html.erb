@@ -1,4 +1,4 @@
-<div class="well">
+<div class="content">
   <%= form_for @department, html: { class: 'form-horizontal' } do |f| %>
     <div class='form-group'>
       <%= f.label :name, 'Name', class: 'col-md-2 control-label' %>
@@ -9,8 +9,8 @@
       <%= f.text_area :description, placeholder: 'department description...', class: 'form-control',
         rows: 5 %>
     </div>
-    <div class="submit">
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <div class='submit'>
+      <%= f.submit 'Save', class: 'button' %>
       <%= link_to 'Cancel', departments_path %>
     </div>
   <% end %>

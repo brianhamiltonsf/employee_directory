@@ -1,4 +1,4 @@
-<div class="well">
+<div class="content">
   <%= form_for @employee, html: { class: 'form-horizontal' } do |f| %>
     <div class='form-group'>
       <%= f.label :firstname, 'First Name', class: 'col-md-2 control-label' %>
@@ -47,7 +47,7 @@
       </div>
     <% end %>
     <div class="submit">
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= f.submit 'Save', class: 'button' %>
       <%= link_to 'Cancel', employees_path %>
     </div>
   <% end %>

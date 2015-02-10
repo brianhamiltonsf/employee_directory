@@ -1,4 +1,4 @@
-<div class="well">
+<div class="content">
   <%= form_for @location, html: { class: 'form-horizontal' } do |f| %>
     <div class='form-group'>
       <%= f.label :name, class: 'col-md-2 control-label' %>
@@ -25,7 +25,7 @@
       <%= f.text_field :zip, class: 'form-control' %>
     </div>
     <div class='submit'>
-      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= f.submit 'Save', class: 'button' %>
       <%= link_to 'Cancel', locations_path %>
     </div>
   <% end %>
