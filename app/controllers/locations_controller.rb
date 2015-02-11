@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :edit, :update, :destroy]
+  before_action :find_location, only: [ :show, :edit, :update, :destroy ]
+  #before_action :require_admin, except: :index
 
   def index
     @locations = Location.all

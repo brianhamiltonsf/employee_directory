@@ -5,6 +5,8 @@ class Employee < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
 
+  has_secure_password validations: false
+
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PHONE_NUMBER = /\A\d{10}\z/
 
@@ -16,6 +18,7 @@ class Employee < ActiveRecord::Base
   validates :office_number, length: { maximum: 6 }, allow_blank: true
   validates :phone, length: { maximum: 10 }, format: { with: VALID_PHONE_NUMBER,
     message: "%{value} is not a valid phone number"}, allow_blank: true
+  validates :password, length: { minimum: 6 }, allow_blank: true, presence: { on: :create }, confirmation: true
 
   def name
     "#{firstname} #{lastname}"

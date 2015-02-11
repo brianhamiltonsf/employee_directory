@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
 
-before_action :find_employee, only: [:show, :edit, :update, :destroy]
+before_action :find_employee, only: [ :show, :edit, :update, :destroy ]
+# before_action :require_admin, except: [ :index, :show ]
 
 def index
   @employees = Employee.all
@@ -17,6 +18,7 @@ def create
   @employee = Employee.new(employee_params)
   if @employee.save
     flash[:notice] = "#{@employee.name} was successfully created."
+    session[:employee_id] = @employee.id
     redirect_to employees_path
   else
     render :new

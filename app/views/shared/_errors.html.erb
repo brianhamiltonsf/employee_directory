@@ -1,0 +1,10 @@
+<% if error.errors.any? %>
+ <div class="alert alert-danger" role="alert">
+   <%= "Please correct the following #{pluralize(error.errors.count, 'error')}:" %>
+   <ul>
+     <% error.errors.full_messages.each do |msg| %>
+       <li><%= msg %></li>
+     <% end %>
+   </ul>
+ </div>
+ <% end %>
