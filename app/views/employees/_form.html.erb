@@ -1,67 +1,70 @@
 <div class="content">
   <%= render 'shared/errors', error: @employee %>
   <%= form_for @employee, html: { class: 'form-horizontal' } do |f| %>
-    <div class='form-group'>
-      <%= f.label :firstname, 'First Name', class: 'col-md-3 control-label' %>
-      <%= f.text_field :firstname, class: 'form-control', placeholder: 'employee first name...' %>
-    </div>
-    <div class='form-group'>
-      <%= f.label :lastname, 'Last Name', class: 'col-md-3 control-label' %>
-      <%= f.text_field :lastname, class: 'form-control', placeholder: 'employee last name...' %>
-    </div>
-    <div class='form-group'>
-      <%= f.label :title, class: 'col-md-3 control-label' %>
-      <%= f.text_field :title, class: 'form-control', placeholder: 'employee title...' %>
-    </div>
-    <% if Location.any? %>
-      <div class="form-group">
-        <%= f.label :location_id, 'Location', class: 'col-md-3 control-label' %>
-        <%= f.select :location_id, all_locations, {}, class: 'form-control' %>
-      </div>
-    <% end %>
-    <div class='form-group'>
-      <%= f.label :office_number, 'Office Number', class: 'col-md-3 control-label' %>
-      <%= f.text_field :office_number, class: 'form-control', placeholder: 'employee office number...' %>
-    </div>
-    <div class='form-group'>
-      <%= f.label :phone, class: 'col-md-3 control-label' %>
-      <%= f.text_field :phone, class: 'form-control' %>
-    </div>
-    <div class='form-group'>
-      <%= f.label :email, 'Email Address', class: 'col-md-3 control-label' %>
-      <%= f.text_field :email, class: 'form-control', placeholder: 'employee email address...' %>
-    </div>
-    <div class='form-group'>
-      <%= f.label :manager, "Manager?", class: 'col-md-3 control-label' %>
-      <%= f.check_box :manager %> <span class="small" class="check_here">Check here if this employee is a manager.</span>
-    </div>
-    <div class='form-group'>
-      <%= f.label :admin, "Admin?", class: 'col-md-3 control-label' %>
-      <%= f.check_box :admin %> <span class="small" class="check_here">Check here if this employee is an admin.</span>
-    </div>
-    <% unless Employee.find_by(:manager).nil? %>
+    <div class='col-md-6'>
       <div class='form-group'>
-        <%= f.label :manager_id, "Manager", class: 'col-md-3 control-label' %>
-        <%= f.select :manager_id, all_managers, {}, class: 'form-control' %>
+        <%= f.label :firstname, 'First Name', class: 'col-md-4 control-label' %>
+        <%= f.text_field :firstname, class: 'form-control', placeholder: 'employee first name...', tabindex: 1 %>
       </div>
-    <% end %>
-    <% if Department.any? %>
       <div class='form-group'>
-        <%= f.label :department_id, 'Department', class: 'col-md-3 control-label' %>
-        <%= f.select :department_id, all_departments, {}, class: 'form-control' %>
+        <%= f.label :lastname, 'Last Name', class: 'col-md-4 control-label' %>
+        <%= f.text_field :lastname, class: 'form-control', placeholder: 'employee last name...', tabindex: 2 %>
       </div>
-    <% end %>
-    <div class='form-group'>
-      <%= f.label :password, class: 'col-md-3 control-label' %>
-      <%= f.password_field :password, class: 'form-control', placeholder: 'employee password...' %>
+      <div class='form-group'>
+        <%= f.label :title, class: 'col-md-4 control-label' %>
+        <%= f.text_field :title, class: 'form-control', placeholder: 'employee title...', tabindex: 3 %>
+      </div>
+      <% if Location.any? %>
+        <div class="form-group">
+          <%= f.label :location_id, 'Location', class: 'col-md-4 control-label' %>
+          <%= f.select :location_id, all_locations, {}, class: 'form-control', tabindex: 4 %>
+        </div>
+      <% end %>
+      <div class='form-group'>
+        <%= f.label :office_number, 'Office Number', class: 'col-md-4 control-label' %>
+        <%= f.text_field :office_number, class: 'form-control', placeholder: 'employee office number...', tabindex: 5 %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :phone, class: 'col-md-4 control-label' %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: 'employee phone number...', tabindex: 6 %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :email, 'Email Address', class: 'col-md-4 control-label' %>
+        <%= f.text_field :email, class: 'form-control', placeholder: 'employee email address...', tabindex: 7 %>
+      </div>
+      <% unless Employee.find_by(:manager).nil? %>
+        <div class='form-group'>
+          <%= f.label :manager_id, "Manager", class: 'col-md-4 control-label' %>
+          <%= f.select :manager_id, all_managers, {}, class: 'form-control', tabindex: 8 %>
+        </div>
+      <% end %>
+      <% if Department.any? %>
+        <div class='form-group'>
+          <%= f.label :department_id, 'Department', class: 'col-md-4 control-label' %>
+          <%= f.select :department_id, all_departments, {}, class: 'form-control', tabindex: 9 %>
+        </div>
+      <% end %>
+      <div class='form-group'>
+        <%= f.label :password, class: 'col-md-4 control-label' %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'employee password...', tabindex: 10 %>
+      </div>
+      <div class='form-group'>
+        <%= f.label :password_confirmation, 'Confirm Password', class: 'col-md-4 control-label' %>
+        <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'confirm employee password...', tabindex: 11 %>
+      </div>
+      <div class="submit">
+        <%= f.submit 'Save', class: 'button', tabindex: 14 %>
+        <%= link_to 'Cancel', employees_path, tabindex: 15 %>
+      </div>
     </div>
-    <div class='form-group'>
-      <%= f.label :password_confirmation, 'Confirm Password', class: 'col-md-3 control-label' %>
-      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'confirm employee password...' %>
-    </div>
-    <div class="submit">
-      <%= f.submit 'Save', class: 'button' %>
-      <%= link_to 'Cancel', employees_path %>
-    </div>
+    <div class='col-md-6'>
+      <div class='form-group check'>
+        <%= f.label :manager, "Manager?", class: 'col-md-4 control-label' %>
+        <%= f.check_box :manager, tabindex: 12 %> <span class="small check_here"><em>Check here if this employee is a manager.</em></span>
+      </div>
+      <div class='form-group check'>
+        <%= f.label :admin, "Admin?", class: 'col-md-4 control-label' %>
+        <%= f.check_box :admin, tabindex: 13 %> <span class="small check_here"><em>Check here if this employee is an admin.</em></span>
+      </div>
   <% end %>
 </div>
