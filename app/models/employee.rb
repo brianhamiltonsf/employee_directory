@@ -8,7 +8,7 @@ class Employee < ActiveRecord::Base
   has_secure_password validations: false
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  VALID_PHONE_NUMBER = /\A\d{10}\z/
+  VALID_PHONE_NUMBER = /\A\(\d{3}\)\s\d{3}-\d{4}\z/
 
   validates :firstname, :lastname, presence: true, length: { maximum: 30 }
   validates :email, length: { maximum: 40 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL,
@@ -16,7 +16,7 @@ class Employee < ActiveRecord::Base
 
   validates :title, length: { maximum: 30 }, allow_blank: true
   validates :office_number, length: { maximum: 6 }, allow_blank: true
-  validates :phone, length: { maximum: 10 }, format: { with: VALID_PHONE_NUMBER,
+  validates :phone, format: { with: VALID_PHONE_NUMBER,
     message: "%{value} is not a valid phone number"}, allow_blank: true
   validates :password, length: { minimum: 6 }, allow_blank: true, presence: { on: :create }, confirmation: true
 

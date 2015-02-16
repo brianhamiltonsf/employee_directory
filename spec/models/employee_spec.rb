@@ -63,14 +63,8 @@ RSpec.describe Employee, :type => :model do
     expect(emp.errors[:office_number]).to include('is too long (maximum is 6 characters)')
   end
 
-  it "is invalid with a phone number longer than 10 characters" do
-    emp = build(:employee, phone: 'a' * 11)
-    emp.valid?
-    expect(emp.errors[:phone]).to include('is too long (maximum is 10 characters)')
-  end
-
   it "is invalid with an invalid phone number" do
-    numbers = ['555444', '444-c34-3333', '555-0393', '33344439221', '444 444-444']
+    numbers = ['555444', '444-c34-3333', '555-0393', '33344439221', '444 444-444','3334445555']
     numbers.each do |number|
       emp = build(:employee, phone: number)
       emp.valid?
@@ -79,7 +73,7 @@ RSpec.describe Employee, :type => :model do
   end
 
   it "is valid with a valid phone number" do
-    expect(build(:employee, phone: '1234567890')).to be_valid
+    expect(build(:employee, phone: '(123) 456-7890')).to be_valid
   end
 
   it "is invalid with an invalid email address" do

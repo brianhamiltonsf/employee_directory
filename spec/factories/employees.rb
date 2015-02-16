@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :employee do
     firstname { Faker::Name.first_name }
     lastname { Faker::Name.last_name }
-    phone "5551234567"
+    phone "(555) 123-4567"
     email { Faker::Internet.email }
     office_number "A101"
     title 'Manager'
