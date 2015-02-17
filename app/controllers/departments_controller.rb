@@ -4,7 +4,7 @@ class DepartmentsController < ApplicationController
   #before_action :require_admin, except: [ :index, :show ]
 
   def index
-    @departments = Department.all
+    @departments = Department.paginate(page: params[:page], per_page: 10)
   end
 
   def show

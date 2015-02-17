@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   #before_action :require_admin, except: :index
 
   def index
-    @locations = Location.all
+    @locations = Location.paginate(page: params[:page], per_page: 10)
   end
 
   def show

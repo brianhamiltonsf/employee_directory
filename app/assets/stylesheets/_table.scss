@@ -9,3 +9,24 @@ th {
 .center {
   text-align: center;
 }
+
+.pagination {
+
+  .active span {
+    background: $font;
+    border: 1px solid $font;
+  }
+
+  .active span:hover {
+    background: $lightest_font;
+    border: 1px solid $lightest_font;
+  }
+
+  li a {
+    color: $font;
+  }
+
+  li a:hover {
+    color: $lightest_font;
+  }
+}
