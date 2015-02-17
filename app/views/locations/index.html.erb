@@ -1,26 +1,25 @@
 <% provide(:title, 'All locations') %>
-
-<table>
+<table class='table table-hover'>
   <tr>
     <th>Name</th>
     <th>Address</th>
-    <th>Address(cont)</th>
+    <th>Address (cont)</th>
     <th>City</th>
     <th>State</th>
     <th>Postal Code</th>
-    <th></th>
-    <th></th>
+    <th class='center'>Edit</th>
+    <th class='center'>Delete</th>
   </tr>
   <% @locations.each do |loc| %>
     <tr>
-      <td><%= loc.name %></td>
+      <td><%= link_to loc.name, location_path(loc) %></td>
       <td><%= loc.address1 %></td>
       <td><%= loc.address2 %></td>
       <td><%= loc.city %></td>
       <td><%= loc.state %></td>
       <td><%= loc.zip %></td>
-      <td><%= link_to 'Edit', edit_location_path(loc) %></td>
-      <td><%= link_to 'Delete', loc, method: :delete, data: { confirm: 'Are you sure?' } </td>
+      <td class='center'><span><%= link_to '', edit_location_path(loc), class: 'glyphicon glyphicon-pencil' %></span></td>
+      <td class='center'><span><%= link_to '', loc, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle' %></span></td>
     </tr>
   <% end %>
 </table>

@@ -27,4 +27,21 @@ body {
   border-left: 2px solid $font;
   border-right: 2px solid $font;
   height: 100%;
+  overflow: auto;
+
+  h3 {
+    position: relative;
+    bottom: 30px;
+    left: 10px;
+  }
+}
+
+a {
+  color: $font;
+}
+
+a:hover {
+  text-decoration: none;
+  border-bottom: 1px dotted $font;
+  color: $font;
 }

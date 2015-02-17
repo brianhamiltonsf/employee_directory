@@ -1,6 +1,6 @@
-<div class="content">
-  <%= render 'shared/errors', error: @employee %>
-  <%= form_for @employee, html: { class: 'form-horizontal' } do |f| %>
+<%= render 'shared/errors', error: @employee %>
+<%= form_for @employee, html: { class: 'form-horizontal' } do |f| %>
+  <%= field_set_tag 'New Employee' do %>
     <div class='col-md-6'>
       <div class='form-group'>
         <%= f.label :firstname, 'First Name', class: 'col-md-4 control-label' %>
@@ -66,5 +66,5 @@
         <%= f.label :admin, "Admin?", class: 'col-md-4 control-label' %>
         <%= f.check_box :admin, tabindex: 13 %> <span class="small check_here"><em>Check here if this employee is an admin.</em></span>
       </div>
-  <% end %>
-</div>
+    <% end %>
+<% end %>

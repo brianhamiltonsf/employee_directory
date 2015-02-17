@@ -1,21 +1,21 @@
 <% provide(:title, 'All employees') %>
-<table>
+<table class='table table-hover'>
   <tr>
     <th>Name</th>
     <th>Title</th>
     <th>Department</th>
     <th>Location</th>
-    <th></th>
-    <th></th>
+    <th class='center'>Edit</th>
+    <th class='center'>Delete</th>
   </tr>
   <% @employees.each do |emp| %>
     <tr>
-      <td><%= emp.name %></td>
+      <td><%= link_to emp.name, employee_path(emp) %></td>
       <td><%= emp.title %></td>
       <td><%= Department.find(emp.department_id).name unless emp.department_id.nil? %></td>
       <td><%= Location.find(emp.location_id).name unless emp.location_id.nil? %></td>
-      <td><%= link_to 'Edit', edit_employee_path(emp) %></td>
-      <td><%= link_to 'Delete', emp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td class='center'><span><%= link_to '', edit_employee_path(emp), class: 'glyphicon glyphicon-pencil' %></span></td>
+      <td class='center'><span><%= link_to '', emp, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle'  %></span></td>
     </tr>
   <% end %>
 </table>
