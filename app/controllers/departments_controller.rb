@@ -45,7 +45,7 @@ class DepartmentsController < ApplicationController
   private
 
   def find_department
-    @department = Department.find(params[:id])
+    @department = Department.find_by(slug: params[:id])
   end
 
   def department_params

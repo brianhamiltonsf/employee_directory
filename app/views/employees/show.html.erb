@@ -9,19 +9,19 @@
     Department: <%= Department.find(@employee.department_id).name %>
   </p>
   <p>
-    Address: <%= @employee.address1 %> <br /> <%= @employee.address2 %>
+    Address: <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %>
   </p>
   <p>
     Office Number: <%= @employee.office_number %>
   </p>
   <p>
-    City: <%= @employee.city %>
+    City: <%= Location.find(@employee.location_id).city %>
   </p>
   <p>
-    State: <%= @employee.state %>
+    State: <%= Location.find(@employee.location_id).state %>
   </p>
   <p>
-    Postal Code: <%= @employee.zip %>
+    Postal Code: <%= Location.find(@employee.location_id).zip %>
   </p>
   <p>
     Phone: <%= @employee.phone %>

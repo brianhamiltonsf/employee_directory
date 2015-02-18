@@ -50,7 +50,7 @@ def employee_params
 end
 
 def find_employee
-  @employee = Employee.find(params[:id])
+  @employee = Employee.find_by(slug: params[:id])
 end
 
 end

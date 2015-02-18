@@ -1,5 +1,7 @@
 class Employee < ActiveRecord::Base
 
+  include Sluggable
+
   belongs_to :department
   belongs_to :location
 
@@ -22,6 +24,12 @@ class Employee < ActiveRecord::Base
 
   def name
     "#{firstname} #{lastname}"
+  end
+
+  sluggable_column :name
+
+  def to_param
+    self.slug
   end
 
 end

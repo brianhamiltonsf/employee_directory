@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211005012) do
+ActiveRecord::Schema.define(version: 20150217230545) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150211005012) do
     t.integer  "leader_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "departments", ["name"], name: "index_departments_on_name", unique: true
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150211005012) do
     t.integer  "location_id"
     t.string   "password_digest"
     t.boolean  "admin",           default: false
+    t.string   "slug"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150211005012) do
     t.string "city"
     t.string "state"
     t.string "zip"
+    t.string "slug"
   end
 
 end
