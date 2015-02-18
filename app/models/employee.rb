@@ -32,6 +32,17 @@ class Employee < ActiveRecord::Base
     self.slug
   end
 
+  def management_chain
+    chain = []
+    mgr_id = self.manager_id
+    while(mgr_id != nil)
+      chain << mgr_id
+      emp = Employee.find(mgr_id) 
+      mgr_id = emp.manager_id
+    end
+    chain
+  end
+
   def directs
     Employee.where("manager_id = ?", self.id).order(:lastname)
   end
