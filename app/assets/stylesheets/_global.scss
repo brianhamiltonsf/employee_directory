@@ -6,6 +6,7 @@ $lightest_font: lighten($font, 15%);
 
 html {
   height: 100%;
+  overflow: auto;
 }
 
 body {
@@ -27,12 +28,10 @@ body {
   border-left: 2px solid $font;
   border-right: 2px solid $font;
   height: 100%;
-  overflow: auto;
 
   h3 {
     position: relative;
     bottom: 30px;
-    left: 10px;
   }
 }
 

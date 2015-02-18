@@ -1,11 +1,21 @@
-<div>
-  <p>
-    Name: <%= @department.name %><span><%= link_to 'Edit', edit_department_path(@department) %></span>
-  </p>
-  <p>
-    Description: <%= @department.description %>
-  </p>
-  <p>
-    Owner: <%= @department.get_owner %>
-  </p>
-</div>
+<% provide(:title, "#{@department.name} employees") %>
+<table class='table table-hover'>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Location</th>
+    <th class='center'>Edit</th>
+    <th class='center'>Delete</th>
+  </tr>
+  <% @employees.each do |emp| %>
+    <tr>
+      <% loc = Location.find(emp.location_id) unless emp.location_id.nil? %>
+      <td><%= link_to emp.name, employee_path(emp) %></td>
+      <td><%= emp.title %></td>
+      <td><%= link_to Location.find(loc).name, location_path(loc) unless emp.location_id.nil? %></td>
+      <td class='center'><span><%= link_to '', edit_employee_path(emp), class: 'glyphicon glyphicon-pencil' %></span></td>
+      <td class='center'><span><%= link_to '', emp, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle'  %></span></td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @employees, renderer: BootstrapPagination::Rails %>

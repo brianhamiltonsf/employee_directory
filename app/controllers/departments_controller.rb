@@ -4,10 +4,12 @@ class DepartmentsController < ApplicationController
   #before_action :require_admin, except: [ :index, :show ]
 
   def index
-    @departments = Department.paginate(page: params[:page], per_page: 10)
+    @departments = Department.paginate(page: params[:page], per_page: 10).order(:name)
   end
 
   def show
+    # @employees = Employee.paginate(page: params[:page], per_page: 10)
+    @employees = Employee.where("department_id = ?", @department.id).order(:lastname).paginate(page: params[:page], per_page: 10)
   end
 
   def new

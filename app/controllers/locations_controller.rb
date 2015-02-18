@@ -3,10 +3,11 @@ class LocationsController < ApplicationController
   #before_action :require_admin, except: :index
 
   def index
-    @locations = Location.paginate(page: params[:page], per_page: 10)
+    @locations = Location.paginate(page: params[:page], per_page: 10).order(:name)
   end
 
   def show
+    @employees = Employee.where("location_id = ?", @location.id).order(:lastname).paginate(page: params[:page], per_page: 10)
   end
 
   def new
