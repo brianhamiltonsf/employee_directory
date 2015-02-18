@@ -29,4 +29,11 @@
   <p>
     Email Address: <%= mail_to @employee.email %>
   </p>
+  <p>
+    <% unless @employee.directs.nil? %>
+      <% @employee.directs.each do |emp| %>
+        <p><%= emp.name %></p>
+      <% end %>
+    <% end %>
+  </p>
 </div>

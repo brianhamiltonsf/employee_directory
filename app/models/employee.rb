@@ -32,4 +32,8 @@ class Employee < ActiveRecord::Base
     self.slug
   end
 
+  def directs
+    Employee.where("manager_id = ?", self.id).order(:lastname)
+  end
+
 end
