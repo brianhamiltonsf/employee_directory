@@ -1,15 +1,19 @@
 <% provide(:title, 'All departments') %>
 <table class='table table-hover'>
   <tr>
-    <th>Department Name</th>
-    <th class='center'>Edit</th>
-    <th class='center'>Delete</th>
+    <th>Name</th>
+    <% if logged_in? && current_employee.admin? %>
+      <th class='center'>Edit</th>
+      <th class='center'>Delete</th>
+    <% end %>
   </tr>
   <% @departments.each do |dep| %>
     <tr>
       <td><%= link_to dep.name, department_path(dep) %></td>
-      <td class='center'><span><%= link_to '', edit_department_path(dep), class: 'glyphicon glyphicon-pencil' %></span></td>
-      <td class='center'><span><%= link_to '', dep, class: 'glyphicon glyphicon-remove-circle', method: :delete, data: { confirm: 'Are you sure?' } %></span></td>
+      <% if logged_in? && current_employee.admin? %>
+        <td class='center'><span><%= link_to '', edit_department_path(dep), class: 'glyphicon glyphicon-pencil' %></span></td>
+        <td class='center'><span><%= link_to '', dep, class: 'glyphicon glyphicon-remove-circle', method: :delete, data: { confirm: 'Are you sure?' } %></span></td>
+    <% end %>
     </tr>
   <% end %>
 </table>

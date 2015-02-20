@@ -1,10 +1,14 @@
 class EmployeesController < ApplicationController
 
 before_action :find_employee, only: [ :show, :edit, :update, :destroy ]
-# before_action :require_admin, except: [ :index, :show ]
+before_action :require_admin, except: [ :index, :show ]
 
 def index
-  @employees = Employee.paginate(page: params[:page], per_page: 10)
+  if params[:search]
+      @employees = Employee.search(params[:search])
+  else
+    @employees = Employee.paginate(page: params[:page], per_page: 10).order("lastname")
+  end
 end
 
 def show

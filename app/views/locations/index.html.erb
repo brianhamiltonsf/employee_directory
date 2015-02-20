@@ -7,8 +7,10 @@
     <th>City</th>
     <th>State</th>
     <th>Postal Code</th>
-    <th class='center'>Edit</th>
-    <th class='center'>Delete</th>
+    <% if logged_in? && current_employee.admin? %>
+      <th class='center'>Edit</th>
+      <th class='center'>Delete</th>
+    <% end %>
   </tr>
   <% @locations.each do |loc| %>
     <tr>
@@ -18,8 +20,10 @@
       <td><%= loc.city %></td>
       <td><%= loc.state %></td>
       <td><%= loc.zip %></td>
-      <td class='center'><span><%= link_to '', edit_location_path(loc), class: 'glyphicon glyphicon-pencil' %></span></td>
-      <td class='center'><span><%= link_to '', loc, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle' %></span></td>
+      <% if logged_in? && current_employee.admin? %>
+        <td class='center'><span><%= link_to '', edit_location_path(loc), class: 'glyphicon glyphicon-pencil' %></span></td>
+        <td class='center'><span><%= link_to '', loc, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle' %></span></td>
+      <% end %>
     </tr>
   <% end %>
 </table>

@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :find_location, only: [ :show, :edit, :update, :destroy ]
-  #before_action :require_admin, except: :index
+  before_action :require_admin, except: [ :index, :show ]
 
   def index
     @locations = Location.paginate(page: params[:page], per_page: 10).order(:name)

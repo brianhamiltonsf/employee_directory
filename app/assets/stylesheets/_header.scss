@@ -2,12 +2,98 @@ header {
   background: $font;
   height: 4em;
   line-height: 4em;
-  color: white;
 
-  h3 {
-    margin: 0;
-    padding: 0;
+  .company-name {
+    color: white;
+    font-size: 1.5em;
+  }
+
+  li {
     display: inline-block;
   }
-  
+
+  .float-right {
+    float: right;
+
+    li > a:hover {
+      border-bottom: 1px dotted white;
+    }
+  }
+
+  a {
+    color: white;
+    font-size: 1.1em;
+  }
+
+  a:hover {
+    background: $font !important;
+    border: none;
+    color: white;
+  }
+
+  .arrow {
+    font-size: 70%;
+    color: white;
+  }
+
+  .float-right > li {
+  margin-left: 25px;
+  position: relative;
+  }
+
+  .menu a:hover {
+    text-decoration: none;
+  }
+
+  ul.submenu {
+    position: absolute;
+    box-shadow: 7px 10px 39px 3px $font;
+    top: 4em;
+    right: -9000em;
+    float: none;
+    width: 120px;
+    height: auto;
+    border-bottom: 2px solid $font;
+    border-right: 2px solid $font;
+    border-left: 2px solid $font;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    margin-left: 2px;
+    z-index: 10;
+    max-height: 0;
+    -moz-transition: max-height 0.8s ease-in-out;
+    -webkit-transition: max-height 0.8s ease-in-out;
+    -o-transition: max-height 0.8s ease-in-out;
+    transition: max-height 0.8s ease-in-out;
+    overflow: hidden;
+  }
+
+  ul.submenu li {
+    float: none;
+    font-size: 81%;
+    border-bottom: 1px dotted #447294;
+    padding: 2px 0 2px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  ul.submenu li:last-child {
+    border-bottom: none;
+  }
+
+  ul.submenu li a {
+    padding: 0 5px;
+    color: $font;
+  }
+
+  ul.submenu li a:hover {
+    background: white !important;
+    text-decoration: underline;
+  }
+
+  li.menu:hover > ul {
+    right: -25px;
+    max-height: 100em;
+  }
+
 }

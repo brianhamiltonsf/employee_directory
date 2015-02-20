@@ -1,0 +1,45 @@
+.search_submit {
+  position: relative;
+  top: -1px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightest_font), color-stop(1, $lightened_font));
+  background: -moz-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -webkit-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -o-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -ms-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: linear-gradient(to bottom, $lightest_font 5%, $lightened_font 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightest_font', endColorstr='$lightened_font',GradientType=0);
+  background-color: $lightest_font;
+  border-radius: 12px;
+  border: 1px solid #d6bcd6;
+  color: $body;
+  font-size: 1.1em;
+
+  &:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightened_font), color-stop(1, $lightest_font));
+    background: -moz-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -webkit-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -o-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -ms-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: linear-gradient(to bottom, $lightened_font 5%, $lightest_font 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightened_font', endColorstr='$lightest_font',GradientType=0);
+    background-color: $lightened_font;
+    color: white
+  }
+}
+
+.search-field {
+  position: relative;
+  top: -1px;
+  height: 20px;
+  vertical-align: middle;
+  border: 1px solid $font;
+  border-radius: 6px;
+  display: inline-block;
+  height: 34px;
+  font-size: 14px;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  width: 275px;
+}

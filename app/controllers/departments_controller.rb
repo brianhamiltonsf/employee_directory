@@ -1,7 +1,7 @@
 class DepartmentsController < ApplicationController
 
   before_action :find_department, only: [ :show,:edit,:update,:destroy ]
-  #before_action :require_admin, except: [ :index, :show ]
+  before_action :require_admin, except: [ :index, :show ]
 
   def index
     @departments = Department.paginate(page: params[:page], per_page: 10).order(:name)

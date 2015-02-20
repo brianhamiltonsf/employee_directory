@@ -6,6 +6,7 @@ class Employee < ActiveRecord::Base
   belongs_to :location
 
   before_save { self.email = email.downcase }
+  before_save :update_directs_on_delete, only: :destroy
 
   has_secure_password validations: false
 
@@ -37,7 +38,7 @@ class Employee < ActiveRecord::Base
     mgr_id = self.manager_id
     while(mgr_id != nil)
       chain << mgr_id
-      emp = Employee.find(mgr_id) 
+      emp = Employee.find(mgr_id)
       mgr_id = emp.manager_id
     end
     chain
@@ -45,6 +46,23 @@ class Employee < ActiveRecord::Base
 
   def directs
     Employee.where("manager_id = ?", self.id).order(:lastname)
+  end
+
+  def self.search(query)
+    results = []
+    results << where("firstname like ?", "%#{query}%")
+    results << where("lastname like ?", "%#{query}%")
+    results.uniq
+  end
+
+  private
+
+  def update_directs_on_delete
+    unless self.directs.empty?
+      self.directs.each do |emp|
+        emp.manager_id = self.manager_id unless self.manager_id.nil?
+      end
+    end
   end
 
 end

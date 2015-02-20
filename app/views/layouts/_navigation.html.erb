@@ -1,1 +1,34 @@
-<h3>Company Name</h3>
+<%= link_to 'Company Name', root_path, class: 'company-name' %>
+<!-- <ul class='nav navbar-nav navbar-right'> -->
+<ul class='float-right'>
+  <% if logged_in? %>
+    <li><%= link_to "Log out", logout_path %></li>
+  <% else %>
+    <li><%= link_to "Log in", login_path %></li>
+  <% end %>
+  <% if logged_in? && current_employee.admin? %>
+    <li class='menu'>
+      <a>Admin <span class="arrow">&#9660;</span></a>
+        <ul class="submenu list-unstyled">
+          <li><%= link_to 'New Employee', new_employee_path %></li>
+          <li><%= link_to 'New Department', new_department_path %></li>
+          <li><%= link_to 'New Location', new_location_path %></li>
+          <li><%= link_to 'Settings', '#' %></li>
+        </ul>
+    </li>
+  <% end %>
+  <li class='menu'>
+    <a>View all <span class="arrow">&#9660;</span></a>
+      <ul class="submenu list-unstyled">
+        <li><%= link_to 'Employees', employees_path %></li>
+        <li><%= link_to 'Departments', departments_path %></li>
+        <li><%= link_to 'Locations', locations_path %></li>
+      </ul>
+  </li>
+  <li>
+    <%= form_tag(employees_path, :method => "get") do %>
+      <%= text_field_tag :search, params[:search], class: "search-field", placeholder: "Search by name..." %>
+      <%= submit_tag "Go", class: 'btn btn-default search_submit' %>
+    <% end %>
+  </li>
+</ul>
