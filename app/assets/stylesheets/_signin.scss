@@ -1,0 +1,12 @@
+#signin {
+  width: 250px;
+  margin: 50px auto;
+
+  input[type='text'], input[type='password'] {
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    margin-top: 10px;
+  }
+}
