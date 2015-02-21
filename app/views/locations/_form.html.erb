@@ -1,6 +1,6 @@
 <%= render 'shared/errors', error: @location %>
 <%= form_for @location, html: { class: 'form-horizontal' } do |f| %>
-  <%= field_set_tag 'New Location' do %>
+  <%= field_set_tag(@location.new_record? ? 'New Location' : "#{@location.name}") do %>
     <div class='col-md-6'>
       <div class='form-group'>
         <%= f.label :name, class: 'col-md-4 control-label' %>

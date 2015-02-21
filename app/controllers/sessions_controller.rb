@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
   def create
     employee = Employee.find_by(email: params[:email])
     if employee && employee.authenticate(params[:password])
-      flash[:notice] = "You have successfully signed in."
       session[:employee_id] = employee.id
       redirect_to root_path
     else

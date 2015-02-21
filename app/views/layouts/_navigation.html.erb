@@ -20,9 +20,15 @@
   <li class='menu'>
     <a>View all <span class="arrow">&#9660;</span></a>
       <ul class="submenu list-unstyled">
-        <li><%= link_to 'Employees', employees_path %></li>
-        <li><%= link_to 'Departments', departments_path %></li>
-        <li><%= link_to 'Locations', locations_path %></li>
+        <% unless params[:controller] == 'employees' && params[:action] == 'index' %>
+          <li><%= link_to 'Employees', employees_path %></li>
+        <% end %>
+        <% unless params[:controller] == 'departments' && params[:action] == 'index' %>
+          <li><%= link_to 'Departments', departments_path %></li>
+        <% end %>
+        <% unless params[:controller] == 'locations' && params[:action] == 'index' %>
+          <li><%= link_to 'Locations', locations_path %></li>
+        <% end %>
       </ul>
   </li>
   <li>

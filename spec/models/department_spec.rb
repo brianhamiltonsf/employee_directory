@@ -12,12 +12,6 @@ RSpec.describe Department, :type => :model do
     expect(department.errors[:name]).to include("can't be blank")
   end
 
-  it "is invalid with a department name longer than 30 characters" do
-    department = build(:department, name: 'a' * 31)
-    department.valid?
-    expect(department.errors[:name]).to include("is too long (maximum is 30 characters)")
-  end
-
   it "does not contain duplicate departments" do
     create(:department)
     department = Department.new(name: 'Engineering')

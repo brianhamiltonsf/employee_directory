@@ -1,6 +1,6 @@
 <%= render 'shared/errors', error: @department %>
 <%= form_for @department, html: { class: 'form-horizontal' } do |f| %>
-  <%= field_set_tag 'New Department' do %>
+  <%= field_set_tag(@department.new_record? ? 'New Department' : "#{@department.name}") do %>
     <div class='col-md-6'>
       <div class='form-group'>
         <%= f.label :name, 'Name', class: 'col-md-4 control-label' %>

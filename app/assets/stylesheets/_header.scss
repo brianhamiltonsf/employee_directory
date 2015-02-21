@@ -18,6 +18,11 @@ header {
     li > a:hover {
       border-bottom: 1px dotted white;
     }
+
+    li.menu > a:hover {
+      border-bottom: none;
+      cursor: pointer;
+    }
   }
 
   a {
@@ -92,7 +97,7 @@ header {
   }
 
   li.menu:hover > ul {
-    right: -25px;
+    right: -28px;
     max-height: 100em;
   }
 
