@@ -1,0 +1,75 @@
+.directs {
+  margin-top: 40px;
+
+  h3 {
+    border-bottom: 1px solid #e5e5e5;
+    width: 87%;
+  }
+
+  .reports {
+    margin-top: -30px;
+  }
+}
+
+.mainleft h1 {
+  margin-bottom: 30px;
+}
+
+.mainright {
+  margin-top: 40px;
+}
+
+.contact_details {
+  font-size: 1.2em;
+}
+
+.chain {
+  margin-top: 15px;
+}
+
+.up_arrow {
+  width: 230px;
+}
+
+.glyphicon-arrow-up {
+  color: $font;
+  font-size: 1.8em;
+  text-align: center;
+  width: 195px;
+}
+
+.badge {
+  color: white;
+  box-shadow: 1px 2px 3px 0px #899599;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightest_font), color-stop(1, $lightened_font));
+  background: -moz-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -webkit-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -o-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: -ms-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
+  background: linear-gradient(to bottom, $lightest_font 5%, $lightened_font 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightest_font', endColorstr='$lightened_font',GradientType=0);
+  background-color: $lightest_font;
+  border-radius: 12px;
+  border: 1px solid #d6bcd6;
+  width: 200px;
+  height: 45px;
+  padding: 10px;
+  margin: 10px 20px 10px 0;
+
+  &:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightened_font), color-stop(1, $lightest_font));
+    background: -moz-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -webkit-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -o-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: -ms-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
+    background: linear-gradient(to bottom, $lightened_font 5%, $lightest_font 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightened_font', endColorstr='$lightest_font',GradientType=0);
+    background-color: $lightened_font;
+    border: 1px solid #d6bcd6;
+  }
+
+  &:active {
+    position:relative;
+    top:1px;
+  }
+}

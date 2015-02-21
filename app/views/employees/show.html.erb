@@ -1,39 +1,45 @@
-<div>
-  <p>
-    Name: <%= @employee.name %>
-  </p>
-  <p>
-    Title: <%= @employee.title %>
-  </p>
-  <p>
-    Department: <%= Department.find(@employee.department_id).name %>
-  </p>
-  <p>
-    Address: <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %>
-  </p>
-  <p>
-    Office Number: <%= @employee.office_number %>
-  </p>
-  <p>
-    City: <%= Location.find(@employee.location_id).city %>
-  </p>
-  <p>
-    State: <%= Location.find(@employee.location_id).state %>
-  </p>
-  <p>
-    Postal Code: <%= Location.find(@employee.location_id).zip %>
-  </p>
-  <p>
-    Phone: <%= @employee.phone %>
-  </p>
-  <p>
-    Email Address: <%= mail_to @employee.email %>
-  </p>
-  <p>
-    <% unless @employee.directs.nil? %>
-      <% @employee.directs.each do |emp| %>
-        <p><%= emp.name %></p>
+<div class='col-md-3 chain'>
+  <% @employee.management_chain.each_with_index do |e,i| %>
+    <% emp = Employee.find(e) %>
+    <p>
+      <%= link_to employee_path(emp), class: 'badge' do %>
+        <%= emp.name %><br /><%= emp.title %>
       <% end %>
-    <% end %>
-  </p>
+    </p>
+    <% unless i == @employee.end_of_chain %><p class='up_arrow'><i class="glyphicon glyphicon-arrow-up"></i></p><% end %>
+  <% end %>
 </div>
+<div class='col-md-4 mainleft'>
+  <h1><%= @employee.name %></h1>
+</div>
+<div class='col-md-4 mainright'>
+  <h3><%= @employee.title %></h3>
+  <div class='contact_details'>
+    <p>
+      Department: <%= Department.find(@employee.department_id).name %>
+    </p>
+    <p>
+      <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
+      <%= Location.find(@employee.location_id).city %> <%= Location.find(@employee.location_id).state %>, <%= Location.find(@employee.location_id).zip %>
+    </p>
+    <p>
+      Office: <%= @employee.office_number %>
+    </p>
+    <p>
+      <%= @employee.phone %><br />
+      <%= mail_to @employee.email %>
+    </p>
+  </div>
+</div>
+<% if @employee.directs.length > 0 %>
+  <div class="col-md-offset-3 col-md-9 directs">
+    <h3>Direct Reports</h3>
+      <div class='reports'>
+        <% @employee.directs.each do |emp| %>
+          <%= link_to employee_path(emp), class: 'badge' do %>
+            <%= emp.name %><br /><%= emp.title %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+<% end %>
