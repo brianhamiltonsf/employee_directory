@@ -43,7 +43,7 @@ class Employee < ActiveRecord::Base
       emp = Employee.find(mgr_id)
       mgr_id = emp.manager_id
     end
-    chain.reverse
+    chain.reverse << self.id
   end
 
   def end_of_chain
