@@ -6,6 +6,14 @@ before_action :require_admin, except: [ :index, :show ]
 def index
   if params[:search]
       @employees = Employee.search(params[:search])
+      if @employees.length == 0
+        redirect_to root_path
+        flash[:error] = 'There are no employees with that name.'
+      elsif @employees.length == 1
+        redirect_to employee_path(@employees)
+      else
+        @employees
+      end
   else
     @employees = Employee.paginate(page: params[:page], per_page: 10).order("lastname")
   end

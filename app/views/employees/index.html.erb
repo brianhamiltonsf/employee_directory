@@ -25,4 +25,4 @@
     </tr>
   <% end %>
 </table>
-<%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @employees, renderer: BootstrapPagination::Rails unless params[:search] %>

@@ -56,8 +56,11 @@ class Employee < ActiveRecord::Base
 
   def self.search(query)
     results = []
-    results << where("firstname like ?", "%#{query}%")
-    results << where("lastname like ?", "%#{query}%")
+    results_first = []
+    results_last = []
+    results_first << where("firstname like ?", "%#{query}%")
+    results_last << where("lastname like ?", "%#{query}%")
+    results = results_first.zip(results_last).flatten.compact
     results.uniq
   end
 
