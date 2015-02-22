@@ -1,7 +1,6 @@
-module EmployeesHelper
+module LocationHelper
   def us_states
       [
-        ['--Select a state--','NA'],
         ['Alabama', 'AL'],
         ['Alaska', 'AK'],
         ['Arizona', 'AZ'],

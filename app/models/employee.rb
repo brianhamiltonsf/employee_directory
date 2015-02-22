@@ -5,6 +5,8 @@ class Employee < ActiveRecord::Base
   belongs_to :department
   belongs_to :location
 
+  mount_uploader :avatar, AvatarUploader
+
   before_save { self.email = email.downcase }
   before_save :update_directs_on_delete, only: :destroy
 
@@ -57,6 +59,19 @@ class Employee < ActiveRecord::Base
     results << where("firstname like ?", "%#{query}%")
     results << where("lastname like ?", "%#{query}%")
     results.uniq
+  end
+
+  def self.managers
+    mgr_hash = {}
+    return_mgrs = []
+    where("manager = ?", true).each do |m|
+      mgr_hash[m.name] = Department.find(m.department_id).name
+    end
+    sorted = mgr_hash.sort_by{ |k,v| v }
+    sorted.each do |k,v|
+      return_mgrs << k + " - " + v
+    end
+    return_mgrs
   end
 
   private

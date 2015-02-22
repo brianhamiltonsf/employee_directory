@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218064232) do
+ActiveRecord::Schema.define(version: 20150221182746) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150218064232) do
     t.string   "password_digest"
     t.boolean  "admin",           default: false
     t.string   "slug"
+    t.string   "avatar"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"

@@ -17,7 +17,7 @@
       <% if Location.any? %>
         <div class="form-group">
           <%= f.label :location_id, 'Location', class: 'col-md-4 control-label' %>
-          <%= f.select :location_id, all_locations, {}, class: 'form-control', tabindex: 4 %>
+          <%= f.select :location_id, all_locations, {include_blank: '--Select a location--'}, class: 'form-control', tabindex: 4 %>
         </div>
       <% end %>
       <div class='form-group'>
@@ -32,16 +32,16 @@
         <%= f.label :email, 'Email Address', class: 'col-md-4 control-label' %>
         <%= f.text_field :email, class: 'form-control', placeholder: 'employee email address...', tabindex: 7 %>
       </div>
-      <% unless Employee.find_by(:manager).nil? %>
+      <% unless Employee.managers.length == 0 %>
         <div class='form-group'>
           <%= f.label :manager_id, "Manager", class: 'col-md-4 control-label' %>
-          <%= f.select :manager_id, all_managers, {}, class: 'form-control', tabindex: 8 %>
+          <%= f.select :manager_id, Employee.managers, {include_blank: '--Select a manager--'}, class: 'form-control', tabindex: 8 %>
         </div>
       <% end %>
       <% if Department.any? %>
         <div class='form-group'>
           <%= f.label :department_id, 'Department', class: 'col-md-4 control-label' %>
-          <%= f.select :department_id, all_departments, {}, class: 'form-control', tabindex: 9 %>
+          <%= f.select :department_id, all_departments, {include_blank: '--Select a department--'}, class: 'form-control', tabindex: 9 %>
         </div>
       <% end %>
       <div class='form-group'>

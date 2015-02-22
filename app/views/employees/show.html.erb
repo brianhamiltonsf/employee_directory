@@ -11,6 +11,13 @@
 </div>
 <div class='col-md-4 mainleft'>
   <h1><%= @employee.name %></h1>
+  <%= image_tag @employee.avatar_url.to_s, size: "240x240", alt: "#{@employee.slug}-photo" %>
+    <% if @employee == current_employee %>
+      <%= form_for @employee, html: { multipart: true } do |f| %>
+        <%= f.file_field :avatar %>
+        <%= f.submit 'Upload', class: 'button' %>
+      <% end %>
+    <% end %>
 </div>
 <div class='col-md-4 mainright'>
   <h3><%= @employee.title %></h3>
