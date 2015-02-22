@@ -8,7 +8,7 @@ def index
       @employees = Employee.search(params[:search])
       if @employees.length == 0
         redirect_to root_path
-        flash[:error] = 'There are no employees with that name.'
+        flash[:danger] = 'There are no employees with that name.'
       elsif @employees.length == 1
         redirect_to employee_path(@employees)
       else
@@ -29,8 +29,7 @@ end
 def create
   @employee = Employee.new(employee_params)
   if @employee.save
-    flash[:notice] = "#{@employee.name} was successfully created."
-    session[:employee_id] = @employee.id
+    flash[:success] = "#{@employee.name} was successfully created."
     redirect_to employees_path
   else
     render :new
@@ -56,7 +55,7 @@ def destroy
     @employee.destroy
     redirect_to employees_path
   end
-  flash[:notice] = "#{@employee.name} was successfully deleted."
+  flash[:success] = "#{@employee.name} was successfully deleted."
 end
 
 private

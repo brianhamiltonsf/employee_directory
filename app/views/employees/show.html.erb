@@ -29,11 +29,13 @@
   <h3><%= @employee.title %></h3>
   <div class='contact_details'>
     <p>
-      Department: <%= Department.find(@employee.department_id).name %>
+      Department: <%= Department.find(@employee.department_id).name unless @employee.department_id.blank? %>
     </p>
     <p>
-      <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
-      <%= Location.find(@employee.location_id).city %> <%= Location.find(@employee.location_id).state %>, <%= Location.find(@employee.location_id).zip %>
+      <% unless @employee.location_id.blank? %>
+        <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
+        <%= Location.find(@employee.location_id).city %> <%= Location.find(@employee.location_id).state %>, <%= Location.find(@employee.location_id).zip %>
+      <% end %>
     </p>
     <p>
       Office: <%= @employee.office_number %>
