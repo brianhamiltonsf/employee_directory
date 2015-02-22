@@ -5,10 +5,7 @@
     <th>Title</th>
     <th>Department</th>
     <th>Location</th>
-    <% if logged_in? && current_employee.admin? %>
-      <th class='center'>Edit</th>
-      <th class='center'>Delete</th>
-    <% end %>
+    <%= render 'shared/edit_delete_header' %>
   </tr>
   <% @employees.each do |emp| %>
     <tr>
@@ -18,10 +15,7 @@
       <td><%= emp.title %></td>
       <td><%= link_to dep.name, department_path(dep) unless dep.nil? %></td>
       <td><%= link_to loc.name, location_path(loc) unless loc.nil? %></td>
-      <% if logged_in? && current_employee.admin? %>
-        <td class='center'><span><%= link_to '', edit_employee_path(emp), class: 'glyphicon glyphicon-pencil' %></span></td>
-        <td class='center'><span><%= link_to '', emp, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle'  %></span></td>
-      <% end %>
+      <%= render 'shared/edit_delete', emp: emp %>
     </tr>
   <% end %>
 </table>

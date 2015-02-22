@@ -1,0 +1,4 @@
+<% if logged_in? && current_employee.admin? %>
+  <td class='center'><span><%= link_to '', edit_employee_path(emp), class: 'glyphicon glyphicon-pencil' %></span></td>
+  <td class='center'><span><%= link_to '', emp, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle'  %></span></td>
+<% end %>
