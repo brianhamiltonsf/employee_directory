@@ -15,7 +15,13 @@
     <% if @employee == current_employee %>
       <%= form_for @employee, html: { multipart: true } do |f| %>
         <%= f.file_field :avatar %>
-        <%= f.submit 'Upload', class: 'button' %>
+        <% unless @employee.avatar.blank? %>
+          <label>
+            <%= f.check_box :remove_avatar %>
+            Delete photo
+          </label>
+        <% end %>
+        <p><%= f.submit 'Submit', class: 'button' %></p>
       <% end %>
     <% end %>
 </div>

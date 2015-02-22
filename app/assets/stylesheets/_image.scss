@@ -1,7 +1,19 @@
-.mainleft img {
+.mainleft {
+
+  img {
   margin: -10px 0 20px 5px;
   width: 240px;
   border: 1px solid #e5e5e5;
+  }
+
+  label {
+    font-size: .9em;
+  }
+
+  input[type="checkbox"] {
+    margin: 0 5px 10px 0;
+  }
+
 }
 
 input[type='file'] {

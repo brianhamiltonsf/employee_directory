@@ -12,12 +12,12 @@
   </tr>
   <% @employees.each do |emp| %>
     <tr>
-      <% dep = Department.find(emp.department_id) %>
-      <% loc = Location.find(emp.location_id) %>
+      <% dep = Department.find(emp.department_id) unless emp.department_id.blank? %>
+      <% loc = Location.find(emp.location_id) unless emp.location_id.blank? %>
       <td><%= link_to emp.name, employee_path(emp) %></td>
       <td><%= emp.title %></td>
-      <td><%= link_to dep.name, department_path(dep) unless emp.department_id.nil? %></td>
-      <td><%= link_to loc.name, location_path(loc) unless emp.location_id.nil? %></td>
+      <td><%= link_to dep.name, department_path(dep) unless dep.nil? %></td>
+      <td><%= link_to loc.name, location_path(loc) unless loc.nil? %></td>
       <% if logged_in? && current_employee.admin? %>
         <td class='center'><span><%= link_to '', edit_employee_path(emp), class: 'glyphicon glyphicon-pencil' %></span></td>
         <td class='center'><span><%= link_to '', emp, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle'  %></span></td>

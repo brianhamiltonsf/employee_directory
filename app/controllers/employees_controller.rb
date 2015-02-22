@@ -42,8 +42,7 @@ end
 
 def update
   if @employee.update(employee_params)
-    flash[:notice] = "#{@employee.name} was successfully updated."
-    redirect_to employees_path
+    redirect_to employee_path(@employee)
   else
     render :edit
   end
