@@ -2,7 +2,7 @@ class Department < ActiveRecord::Base
 
   include Sluggable
 
-  has_many :employees
+  has_many :employees, dependent: :nullify
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
 
   sluggable_column :name

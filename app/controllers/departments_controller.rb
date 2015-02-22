@@ -8,7 +8,6 @@ class DepartmentsController < ApplicationController
   end
 
   def show
-    # @employees = Employee.paginate(page: params[:page], per_page: 10)
     @employees = Employee.where("department_id = ?", @department.id).order(:lastname).paginate(page: params[:page], per_page: 10)
   end
 
@@ -19,7 +18,7 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     if @department.save
-      flash[:notice] = "#{@department.name} was successfully created."
+      flash[:success] = "#{@department.name} was successfully created."
       redirect_to departments_path
     else
       render :new
@@ -31,7 +30,7 @@ class DepartmentsController < ApplicationController
 
   def update
     if @department.update(department_params)
-      flash[:notice] = "#{@department.name} was successfully updated."
+      flash[:success] = "#{@department.name} was successfully updated."
       redirect_to departments_path
     else
       render :edit
@@ -40,7 +39,7 @@ class DepartmentsController < ApplicationController
 
   def destroy
     @department.destroy
-    flash[:notice] = "#{@department.name} was successfully deleted."
+    flash[:success] = "#{@department.name} was successfully deleted."
     redirect_to departments_path
   end
 

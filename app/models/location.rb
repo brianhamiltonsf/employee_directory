@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
 
   include Sluggable
 
-  has_many :employees
+  has_many :employees, dependent: :nullify
   VALID_ZIP_CODE = /\A\d{5}\z/
 
   validates :city, :address1, :address2, length: { maximum: 40 }, allow_blank: true
