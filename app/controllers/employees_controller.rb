@@ -49,9 +49,14 @@ def update
 end
 
 def destroy
-  @employee.destroy
+  if @employee == current_employee
+    @employee.destroy
+    redirect_to logout_path
+  else
+    @employee.destroy
+    redirect_to employees_path
+  end
   flash[:notice] = "#{@employee.name} was successfully deleted."
-  redirect_to employees_path
 end
 
 private

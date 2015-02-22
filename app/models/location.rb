@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   include Sluggable
 
   has_many :employees
-  VALID_ZIP_CODE = /\A\d{5}(\d{4})?\z/
+  VALID_ZIP_CODE = /\A\d{5}\z/
 
   validates :city, :address1, :address2, length: { maximum: 40 }, allow_blank: true
   validates :zip, format: { with: VALID_ZIP_CODE, message: "%{value} is not a valid zip code" }

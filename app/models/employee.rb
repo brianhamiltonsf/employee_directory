@@ -78,6 +78,8 @@ class Employee < ActiveRecord::Base
     return_mgrs
   end
 
+  private
+
   def update_directs_on_delete
     unless self.directs.empty?
       self.directs.map do |emp|

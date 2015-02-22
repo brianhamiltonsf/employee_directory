@@ -46,7 +46,7 @@ RSpec.describe Location, :type => :model do
     end
 
     it "is valid with a valid zip code" do
-      zips = ['12345', '123456789']
+      zips = ['12345']
         zips.each do |zip|
           expect(build(:location, zip: zip)).to be_valid
         end
