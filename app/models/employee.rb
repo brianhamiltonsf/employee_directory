@@ -8,7 +8,8 @@ class Employee < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   before_save { self.email = email.downcase }
-  before_save :update_directs_on_delete, only: :destroy
+  after_save :update_directs_on_delete, only: :destroy
+  before_save :set_fullname
 
   has_secure_password validations: false
 
@@ -27,6 +28,10 @@ class Employee < ActiveRecord::Base
 
   def name
     "#{firstname} #{lastname}"
+  end
+
+  def set_fullname
+    self.fullname = "#{firstname} #{lastname}"
   end
 
   sluggable_column :name
@@ -56,12 +61,8 @@ class Employee < ActiveRecord::Base
 
   def self.search(query)
     results = []
-    results_first = []
-    results_last = []
-    results_first << where("firstname like ?", "%#{query}%")
-    results_last << where("lastname like ?", "%#{query}%")
-    results = results_first.zip(results_last).flatten.compact
-    results.uniq
+    results << where("fullname like ?", "%#{query}%")
+    results.flatten.uniq
   end
 
   def self.managers
@@ -81,8 +82,8 @@ class Employee < ActiveRecord::Base
 
   def update_directs_on_delete
     unless self.directs.empty?
-      self.directs.each do |emp|
-        emp.manager_id = self.manager_id unless self.manager_id.nil?
+      self.directs.map do |emp|
+        emp.manager_id = self.manager_id
       end
     end
   end

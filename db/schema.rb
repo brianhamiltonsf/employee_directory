@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221182746) do
+ActiveRecord::Schema.define(version: 20150222060045) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150221182746) do
     t.boolean  "admin",           default: false
     t.string   "slug"
     t.string   "avatar"
+    t.string   "fullname"
   end
 
   add_index "employees", ["department_id"], name: "index_employees_on_department_id"
