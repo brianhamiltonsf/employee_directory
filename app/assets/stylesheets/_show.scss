@@ -19,6 +19,20 @@
   margin-top: 40px;
 }
 
+.edit_delete {
+
+  a {
+    margin: 25px 15px 0 0;
+    font-size: 1.3em;
+  }
+
+  a:hover {
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+}
+
 .contact_details {
   font-size: 1.2em;
   margin-top: -20px;

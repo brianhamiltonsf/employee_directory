@@ -8,7 +8,7 @@ class Employee < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   before_save { self.email = email.downcase }
-  after_save :update_directs_on_delete, only: :destroy
+  before_destroy :update_directs_on_delete
   before_save :set_fullname
 
   has_secure_password validations: false
@@ -78,12 +78,11 @@ class Employee < ActiveRecord::Base
     return_mgrs
   end
 
-  private
-
   def update_directs_on_delete
     unless self.directs.empty?
       self.directs.map do |emp|
         emp.manager_id = self.manager_id
+        emp.save
       end
     end
   end

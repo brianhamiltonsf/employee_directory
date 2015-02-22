@@ -25,6 +25,10 @@
     background-color: $lightened_font;
     color: white
   }
+
+  &:focus {
+    color: white;
+  }
 }
 
 .search-field {

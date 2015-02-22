@@ -37,6 +37,12 @@
       <%= mail_to @employee.email %>
     </p>
   </div>
+  <% if logged_in? && current_employee.admin? %>
+    <div class='edit_delete'>
+      <span><%= link_to '', edit_employee_path(@employee), class: 'glyphicon glyphicon-pencil edit_delete' %></span>
+      <span><%= link_to '', @employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle edit_delete'  %></span>
+    </div>
+  <% end %>
 </div>
 <% if @employee.directs.length > 0 %>
   <div class="col-md-offset-3 col-md-9 directs">
