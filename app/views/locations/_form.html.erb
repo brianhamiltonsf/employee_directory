@@ -20,7 +20,7 @@
       </div>
       <div class='form-group'>
         <%= f.label :state, class: 'col-md-4 control-label' %>
-        <%= f.select :state, options_for_select(us_states), {include_blank: '--Select a state--'}, class: 'form-control' %>
+        <%= f.select :state, options_for_select(us_states, selected: @location.state), {include_blank: '--Select a state--'}, class: 'form-control' %>
       </div>
       <div class='form-group'>
         <%= f.label :zip, 'Postal Code', class: 'col-md-4 control-label' %>

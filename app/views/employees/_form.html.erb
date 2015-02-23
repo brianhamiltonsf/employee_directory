@@ -35,7 +35,13 @@
       <% unless Employee.managers.length == 0 %>
         <div class='form-group'>
           <%= f.label :manager_id, "Manager", class: 'col-md-4 control-label' %>
-          <%= f.select :manager_id, Employee.managers, {include_blank: '--Select a manager--'}, class: 'form-control', tabindex: 8 %>
+          <% if @employee.manager_id.blank? %>
+            <%= f.select :manager_id, Employee.managers, { include_blank: '--Select a manager--' }, class: 'form-control', tabindex: 8 %>
+          <% else %>
+            <% mgr = Employee.find(@employee.manager_id) %>
+            <% dep = Department.find(mgr.department_id) %>
+            <%= f.select :manager_id, Employee.managers, { selected: "#{mgr.fullname} - #{dep.name}", include_blank: '--Select a manager--' }, class: 'form-control', tabindex: 8 %>
+          <% end %>
         </div>
       <% end %>
       <% if Department.any? %>
