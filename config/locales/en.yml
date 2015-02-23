@@ -20,4 +20,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      employee:
+        firstname: "First name"
+        lastname: "Last name"
+        location_id: ''
+        email: "Email address"
+        department_id: ''
+        password_digest: "Password"
+      location:
+        zip: "Zip code"
+        state: ''
+    errors:
+      models:
+        employee:
+          attributes:
+            department_id:
+              blank: "Please select a department"
+            location_id:
+              blank: "Please select a location"

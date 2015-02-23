@@ -25,7 +25,7 @@ RSpec.describe Location, :type => :model do
       states.each do |state|
         loc = build(:location, state: state)
         loc.valid?
-        expect(loc.errors[:state]).to include(" - please select a valid state")
+        expect(loc.errors[:state]).to include("Please select a state")
       end
     end
 

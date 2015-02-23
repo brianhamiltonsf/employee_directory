@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     if current_employee.admin?
       return true
     else
-      flash[:error] = "Admin access required."
+      flash[:danger] = "Admin access required."
       redirect_to root_path
     end
   end

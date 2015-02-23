@@ -18,10 +18,9 @@ class Employee < ActiveRecord::Base
 
   validates :firstname, :lastname, presence: true, length: { maximum: 30 }
   validates :title, :location_id, :office_number, :phone, presence: true
-  validates :location, presence: true
   validates :email, length: { maximum: 40 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL,
     message: "%{value} is not a valid email address" }
-  validates :manager_id, :department_id, presence: true
+  validates :department_id, presence: true
   validates :title, length: { maximum: 30 }, allow_blank: true, presence: true
   validates :office_number, length: { maximum: 6 }, allow_blank: true, presence: true
   validates :phone, format: { with: VALID_PHONE_NUMBER,

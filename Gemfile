@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem 'sqlite3'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'carrierwave'
@@ -33,7 +33,6 @@ group :development do
   gem 'spring'
   gem 'pry'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 end
 
 group :development, :test do
@@ -48,6 +47,11 @@ group :test do
   gem 'capybara', '~> 2.4.3'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'launchy', '~> 2.4.2'
+end
+
+group :production do
+  gem 'pg', '0.18.1'
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
