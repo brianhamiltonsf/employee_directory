@@ -17,14 +17,17 @@ class Employee < ActiveRecord::Base
   VALID_PHONE_NUMBER = /\A\(\d{3}\)\s\d{3}-\d{4}\z/
 
   validates :firstname, :lastname, presence: true, length: { maximum: 30 }
+  validates :title, :location_id, :office_number, :phone, presence: true
+  validates :location, presence: true
   validates :email, length: { maximum: 40 }, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL,
-    message: "%{value} is not a valid email address" }, allow_blank: true, allow_nil: true
-
-  validates :title, length: { maximum: 30 }, allow_blank: true
-  validates :office_number, length: { maximum: 6 }, allow_blank: true
+    message: "%{value} is not a valid email address" }
+  validates :manager_id, :department_id, presence: true
+  validates :title, length: { maximum: 30 }, allow_blank: true, presence: true
+  validates :office_number, length: { maximum: 6 }, allow_blank: true, presence: true
   validates :phone, format: { with: VALID_PHONE_NUMBER,
-    message: "%{value} is not a valid phone number"}, allow_blank: true
+    message: "%{value} is not a valid phone number"}, allow_blank: true, presence: true
   validates :password, length: { minimum: 6 }, allow_blank: true, presence: { on: :create }, confirmation: true
+  validates :password_digest, presence: true
 
   def name
     "#{firstname} #{lastname}"

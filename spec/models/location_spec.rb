@@ -9,9 +9,9 @@ RSpec.describe Location, :type => :model do
     end
 
     it "is invalid with a street address longer than 40 characters" do
-      loc = build(:location, address1: 'a' * 41)
+      loc = build(:location, address: 'a' * 41)
       loc.valid?
-      expect(loc.errors[:address1]).to include('is too long (maximum is 40 characters)')
+      expect(loc.errors[:address]).to include('is too long (maximum is 40 characters)')
     end
 
     it "is invalid with a secondary address longer than 40 characters" do
@@ -25,7 +25,7 @@ RSpec.describe Location, :type => :model do
       states.each do |state|
         loc = build(:location, state: state)
         loc.valid?
-        expect(loc.errors[:state]).to include("Please select a valid state")
+        expect(loc.errors[:state]).to include(" - please select a valid state")
       end
     end
 

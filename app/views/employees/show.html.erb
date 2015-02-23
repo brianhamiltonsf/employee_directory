@@ -28,22 +28,24 @@
 <div class='col-md-4 mainright'>
   <h3><%= @employee.title %></h3>
   <div class='contact_details'>
-    <p>
-      Department: <%= Department.find(@employee.department_id).name unless @employee.department_id.blank? %>
-    </p>
-    <p>
-      <% unless @employee.location_id.blank? %>
-        <%= Location.find(@employee.location_id).address1 %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
+    <% unless @employee.location_id.blank? %>
+      <p>
+        Department: <%= Department.find(@employee.department_id).name unless @employee.department_id.blank? %>
+      </p>
+      <p>
+        <%= Location.find(@employee.location_id).address %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
         <%= Location.find(@employee.location_id).city %> <%= Location.find(@employee.location_id).state %>, <%= Location.find(@employee.location_id).zip %>
-      <% end %>
-    </p>
-    <p>
-      Office: <%= @employee.office_number %>
-    </p>
-    <p>
-      <%= @employee.phone %><br />
-      <%= mail_to @employee.email %>
-    </p>
+      </p>
+    <% end %>
+    <% unless @employee.office_number.blank? %>
+      <p>
+        Office: <%= @employee.office_number %>
+      </p>
+      <p>
+        <%= @employee.phone %><br />
+        <%= mail_to @employee.email %>
+      </p>
+    <% end %>
   </div>
   <% if logged_in? && current_employee.admin? %>
     <div class='edit_delete'>

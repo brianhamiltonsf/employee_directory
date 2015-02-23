@@ -101,4 +101,8 @@ header {
     max-height: 100em;
   }
 
+  li#admin:hover > ul {
+    right: -32px;
+  }
+
 }

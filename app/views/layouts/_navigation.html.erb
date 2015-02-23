@@ -7,7 +7,7 @@
     <li><%= link_to "Log in", login_path %></li>
   <% end %>
   <% if logged_in? && current_employee.admin? %>
-    <li class='menu'>
+    <li class='menu' id='admin'>
       <a>Admin <span class="arrow">&#9660;</span></a>
         <ul class="submenu list-unstyled">
           <li><%= link_to 'New Employee', new_employee_path %></li>
