@@ -47,10 +47,10 @@
       </p>
     <% end %>
   </div>
-  <% if logged_in? && current_employee.admin? %>
+  <% if logged_in? && (current_employee.admin? || current_employee == @employee) %>
     <div class='edit_delete'>
       <span><%= link_to '', edit_employee_path(@employee), class: 'glyphicon glyphicon-pencil edit_delete' %></span>
-      <span><%= link_to '', @employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle edit_delete'  %></span>
+      <span><%= link_to '', @employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle edit_delete' if current_employee.admin? %></span>
     </div>
   <% end %>
 </div>

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:employee_id] = employee.id
       redirect_to root_path
     else
-      flash[:error] = "Your username and/or password are incorrect."
+      flash[:danger] = "Your username and/or password are incorrect."
       redirect_to login_path
     end
   end

@@ -1,12 +1,15 @@
 class EmployeesController < ApplicationController
 
 before_action :find_employee, only: [ :show, :edit, :update, :destroy ]
-before_action :require_admin, except: [ :index, :show ]
+before_action :require_admin, except: [ :index, :show, :edit, :update ]
 
 def index
   if params[:search]
       @employees = Employee.search(params[:search])
-      if @employees.length == 0
+      if params[:search].blank?
+        redirect_to root_path
+        flash[:danger] = 'You did not enter a name to search for.'
+      elsif @employees.length == 0
         redirect_to root_path
         flash[:danger] = 'There are no employees with that name.'
       elsif @employees.length == 1

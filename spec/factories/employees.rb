@@ -12,5 +12,6 @@ FactoryGirl.define do
     manager false
     department_id 1
     location_id 1
+    password 123456789
   end
 end
