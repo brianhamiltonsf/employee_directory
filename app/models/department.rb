@@ -15,6 +15,10 @@ class Department < ActiveRecord::Base
     owners = Employee.find_by(manager && department_id == self.id)
   end
 
+  def self.all_departments
+    order(:name).map { |dep| [dep.name,dep.id] }
+  end
+
   def to_param
     self.slug
   end

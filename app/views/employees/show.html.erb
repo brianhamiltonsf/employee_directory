@@ -33,8 +33,9 @@
         Department: <%= Department.find(@employee.department_id).name unless @employee.department_id.blank? %>
       </p>
       <p>
-        <%= Location.find(@employee.location_id).address %> <br /> <%= Location.find(@employee.location_id).address2 %><br />
-        <%= Location.find(@employee.location_id).city %> <%= Location.find(@employee.location_id).state %>, <%= Location.find(@employee.location_id).zip %>
+        <% loc = Location.find(@employee.location_id) %>
+        <%= loc.address %> <br /> <%= loc.address2 %><br />
+        <%= loc.city %> <%= loc.state %>, <%= loc.zip %>
       </p>
     <% end %>
     <% unless @employee.office_number.blank? %>

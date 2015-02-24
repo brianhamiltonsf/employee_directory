@@ -68,16 +68,37 @@ class Employee < ActiveRecord::Base
   end
 
   def self.managers
-    mgr_hash = {}
-    return_mgrs = []
+    mgr_ids = [] # stores all manager ids
+    mgr_names = [] # stores the names of all managers
+    mgr_hash = {} # a hash of manager names and departments
+    return_mgrs = [] # an array of 'Manager Name - Department'
+    return_hash = {}
+
+    # finds all managers
     where("manager = ?", true).each do |m|
-      mgr_hash[m.name] = Department.find(m.department_id).name
+      mgr_ids << m.id #  adds their id to mgr_ids array
+      mgr_names << m.fullname # adds their name to the mgr_names array
+      mgr_hash[m.fullname] = Department.find(m.department_id).name # key is manager name, value is manager department
     end
-    sorted = mgr_hash.sort_by{ |k,v| v }
+
+    sorted = mgr_hash.sort_by{ |k,v| [v,k] } # sorts mgr_hash by department
+
     sorted.each do |k,v|
-      return_mgrs << k + " - " + v
+      return_mgrs << k + " - " + v # combines manager name and department into a single array item
     end
-    return_mgrs
+
+    return_mgrs.each do |m|
+      results = m.split(" ") 
+      name = []
+      val = ''
+      while(val != "-")
+        val = results.shift
+        name << val unless val == '-'
+      end
+      return_hash[m] = Employee.where("fullname like ?", name.join(" "))[0].id
+    end
+
+    return_hash
   end
 
   private

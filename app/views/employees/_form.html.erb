@@ -17,7 +17,7 @@
       <% if Location.any? %>
         <div class="form-group">
           <%= f.label :location_id, 'Location', class: 'col-md-4 control-label' %>
-          <%= f.select :location_id, all_locations, {include_blank: '--Select a location--'}, class: 'form-control', tabindex: 4 %>
+          <%= f.select :location_id, Location.all_locations, {include_blank: '--Select a location--'}, class: 'form-control', tabindex: 4 %>
         </div>
       <% end %>
       <div class='form-group'>
@@ -40,14 +40,14 @@
           <% else %>
             <% mgr = Employee.find(@employee.manager_id) %>
             <% dep = Department.find(mgr.department_id) %>
-            <%= f.select :manager_id, Employee.managers, { selected: "#{mgr.fullname} - #{dep.name}", include_blank: '--Select a manager--' }, class: 'form-control', tabindex: 8 %>
+            <%= f.select :manager_id, Employee.managers, { selected: mgr.id, include_blank: '--Select a manager--' }, class: 'form-control', tabindex: 8 %>
           <% end %>
         </div>
       <% end %>
       <% if Department.any? %>
         <div class='form-group'>
           <%= f.label :department_id, 'Department', class: 'col-md-4 control-label' %>
-          <%= f.select :department_id, all_departments, {include_blank: '--Select a department--'}, class: 'form-control', tabindex: 9 %>
+          <%= f.select :department_id, Department.all_departments, {include_blank: '--Select a department--'}, class: 'form-control', tabindex: 9 %>
         </div>
       <% end %>
       <div class='form-group'>

@@ -13,12 +13,16 @@ class Location < ActiveRecord::Base
     'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE',
     'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA',
     'WI', 'WV', 'WY'], message: "Please select a state" }
-    validates :zip, format: { with: VALID_ZIP_CODE, message: "%{value} is not a valid zip code" }
+    validates :zip, format: { with: VALID_ZIP_CODE, message: "%{value} is not a valid postal code" }
 
   sluggable_column :name
 
   def to_param
     self.slug
+  end
+
+  def self.all_locations
+    order(:name).map { |loc| [loc.name, loc.id] }
   end
 
 end

@@ -30,7 +30,7 @@ en:
         department_id: ''
         password_digest: "Password"
       location:
-        zip: "Zip code"
+        zip: "Postal code"
         state: ''
     errors:
       models:
