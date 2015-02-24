@@ -41,7 +41,7 @@ RSpec.describe Location, :type => :model do
       zips.each do |zip|
         loc = build(:location, zip: zip)
         loc.valid?
-        expect(loc.errors[:zip]).to include("#{zip} is not a valid zip code")
+        expect(loc.errors[:zip]).to include("#{zip} is not a valid postal code")
       end
     end
 
