@@ -88,7 +88,7 @@ class Employee < ActiveRecord::Base
     end
 
     return_mgrs.each do |m|
-      results = m.split(" ") 
+      results = m.split(" ")
       name = []
       val = ''
       while(val != "-")
