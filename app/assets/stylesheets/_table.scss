@@ -15,18 +15,19 @@ th {
   .active span {
     background: $font;
     border: 1px solid $font;
-  }
 
-  .active span:hover {
-    background: $lightest_font;
-    border: 1px solid $lightest_font;
+    &:hover {
+      background: $lightest_font;
+      border: 1px solid $lightest_font;
+    }
   }
 
   li a {
     color: $font;
+
+    &:hover {
+      color: $lightest_font;
+    }
   }
 
-  li a:hover {
-    color: $lightest_font;
-  }
 }

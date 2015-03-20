@@ -4,7 +4,7 @@
     <div class='col-md-6'>
       <div class='form-group'>
         <%= f.label :firstname, 'First Name', class: 'col-md-4 control-label' %>
-        <%= f.text_field :firstname, class: 'form-control', placeholder: 'employee first name...', tabindex: 1 %>
+        <%= f.text_field :firstname, class: 'form-control', placeholder: 'employee first name...', tabindex: 1, autofocus: true %>
       </div>
       <div class='form-group'>
         <%= f.label :lastname, 'Last Name', class: 'col-md-4 control-label' %>
@@ -26,11 +26,11 @@
       </div>
       <div class='form-group'>
         <%= f.label :phone, class: 'col-md-4 control-label' %>
-        <%= f.text_field :phone, class: 'form-control', placeholder: '(xxx) xxx-xxxx', tabindex: 6 %>
+        <%= f.telephone_field :phone, class: 'form-control', placeholder: '(xxx) xxx-xxxx', tabindex: 6 %>
       </div>
       <div class='form-group'>
         <%= f.label :email, 'Email Address', class: 'col-md-4 control-label' %>
-        <%= f.text_field :email, class: 'form-control', placeholder: 'employee email address...', tabindex: 7 %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'employee email address...', tabindex: 7 %>
       </div>
       <% unless Employee.managers.length == 0 %>
         <div class='form-group'>

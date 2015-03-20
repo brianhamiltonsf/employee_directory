@@ -13,6 +13,8 @@ class Employee < ActiveRecord::Base
 
   has_secure_password validations: false
 
+  scope :ci_find, lambda { |attribute, value| where("lower(#{attribute}) like ?", value.downcase) }
+
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PHONE_NUMBER = /\A\(\d{3}\)\s\d{3}-\d{4}\z/
 
@@ -62,8 +64,8 @@ class Employee < ActiveRecord::Base
   end
 
   def self.search(query)
-    results = []
-    results << where("fullname like ?", "%#{query}%")
+    results = [] # stores the results
+    results << Employee.ci_find('fullname',"%#{query}%")
     results.flatten.uniq
   end
 

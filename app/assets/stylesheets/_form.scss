@@ -56,33 +56,33 @@ div.submit {
   a {
     font-size: .9em;
   }
-}
 
-@media screen and (max-width: 992px) {
-  div.submit {
+  @media screen and (max-width: 992px) {
     position: relative;
     top: 150px;
   }
-}
 
-@media screen and (min-width: 992px) {
-  div.submit {
+  @media screen and (min-width: 992px) {
     margin-left: 8.5em;
   }
-  div.form-group label {
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 11em;
+  }
+}
+
+div.form-group label {
+
+  @media screen and (min-width: 992px) {
     font-size: .9em;
     margin-top: .2em;
     padding-left: 0;
   }
-}
 
-@media screen and (min-width: 1200px) {
-  div.submit {
-    margin-left: 11em;
-  }
-  div.form-group label {
+  @media screen and (min-width: 1200px) {
     font-size: 1.2em;
   }
+
 }
 
 .control-label {
@@ -95,37 +95,18 @@ div.submit {
 }
 
 .button {
-  box-shadow: 1px 2px 3px 0px #899599;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightest_font), color-stop(1, $lightened_font));
-  background: -moz-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -webkit-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -o-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -ms-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: linear-gradient(to bottom, $lightest_font 5%, $lightened_font 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightest_font', endColorstr='$lightened_font',GradientType=0);
-  background-color: $lightest_font;
-  border-radius: 12px;
-  border: 1px solid #d6bcd6;
+  @include button;
   display: inline-block;
   cursor: pointer;
-  color: $body;
   font-size: 1.1em;
   padding: 5px 15px;
   text-decoration: none;
 
   &:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightened_font), color-stop(1, $lightest_font));
-    background: -moz-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -webkit-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -o-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -ms-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: linear-gradient(to bottom, $lightened_font 5%, $lightest_font 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightened_font', endColorstr='$lightest_font',GradientType=0);
-    background-color: $lightened_font;
+    @extend %button_hover;
   }
   &:active {
-    position:relative;
-    top:1px;
+    @extend %button_active;
   }
   &:focus {
     color: white;

@@ -1,28 +1,11 @@
 .search_submit {
+  @include button(none);
   position: relative;
   top: -1px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightest_font), color-stop(1, $lightened_font));
-  background: -moz-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -webkit-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -o-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: -ms-linear-gradient(top, $lightest_font 5%, $lightened_font 100%);
-  background: linear-gradient(to bottom, $lightest_font 5%, $lightened_font 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightest_font', endColorstr='$lightened_font',GradientType=0);
-  background-color: $lightest_font;
-  border-radius: 12px;
-  border: 1px solid #d6bcd6;
-  color: $body;
   font-size: 1.1em;
 
   &:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $lightened_font), color-stop(1, $lightest_font));
-    background: -moz-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -webkit-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -o-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: -ms-linear-gradient(top, $lightened_font 5%, $lightest_font 100%);
-    background: linear-gradient(to bottom, $lightened_font 5%, $lightest_font 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='$lightened_font', endColorstr='$lightest_font',GradientType=0);
-    background-color: $lightened_font;
+    @extend %button_hover;
     color: white
   }
 
