@@ -7,14 +7,17 @@ class Department < ActiveRecord::Base
 
   sluggable_column :name
 
+  # Returns the manager of the department.
   def get_owner
     Employee.find(self.leader_id).name unless self.leader_id.nil?
   end
 
+  # Returns an array of Employee objects that are in the department and are managers.
   def potential_owners
-    owners = Employee.find_by(manager && department_id == self.id)
+    owners = Employee.where("department_id = ? AND manager = ?", self.id, true)
   end
 
+  # Returns an array of arrays. the inner array includes the department name and id.
   def self.all_departments
     order(:name).map { |dep| [dep.name,dep.id] }
   end

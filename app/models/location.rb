@@ -21,6 +21,7 @@ class Location < ActiveRecord::Base
     self.slug
   end
 
+  # Returns an array of arrays. The inner array includes the location name and id.
   def self.all_locations
     order(:name).map { |loc| [loc.name, loc.id] }
   end

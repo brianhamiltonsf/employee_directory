@@ -13,6 +13,7 @@ class Employee < ActiveRecord::Base
 
   has_secure_password validations: false
 
+  # For case-insensitive search.
   scope :ci_find, lambda { |attribute, value| where("lower(#{attribute}) like ?", value.downcase) }
 
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -30,10 +31,12 @@ class Employee < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true, presence: { on: :create }, confirmation: true
   validates :password_digest, presence: true
 
+  # Returns a string with the first and last name.
   def name
     "#{firstname} #{lastname}"
   end
 
+  # Sets the fullname field to be a string of the first and last name.
   def set_fullname
     self.fullname = "#{firstname} #{lastname}"
   end
@@ -44,6 +47,7 @@ class Employee < ActiveRecord::Base
     self.slug
   end
 
+  # Returns an array of Employee ID's representing the management chain. Includes the employee's own ID at the bottom of the chain.
   def management_chain
     chain = []
     mgr_id = self.manager_id
@@ -55,26 +59,30 @@ class Employee < ActiveRecord::Base
     chain.reverse << self.id
   end
 
+  # not sure if this is used anywhere
   def end_of_chain
     management_chain.length - 1
   end
 
+  # Returns an array of Employee objects who directly report to the employee.
   def directs
     Employee.where("manager_id = ?", self.id).order(:lastname)
   end
 
+  # Case-insensitive search.
   def self.search(query)
-    results = [] # stores the results
+    results = []
     results << Employee.ci_find('fullname',"%#{query}%")
     results.flatten.uniq
   end
 
+  # Returns a hash with "Manager Name - Department" as key and the manager's Employee ID as the key.
   def self.managers
     mgr_ids = [] # stores all manager ids
     mgr_names = [] # stores the names of all managers
     mgr_hash = {} # a hash of manager names and departments
     return_mgrs = [] # an array of 'Manager Name - Department'
-    return_hash = {}
+    return_hash = {} # the hash that is returned by the method
 
     # finds all managers
     where("manager = ?", true).each do |m|
@@ -89,6 +97,7 @@ class Employee < ActiveRecord::Base
       return_mgrs << k + " - " + v # combines manager name and department into a single array item
     end
 
+    # sorts the hash of manager names and departments by department
     return_mgrs.each do |m|
       results = m.split(" ")
       name = []
@@ -105,6 +114,7 @@ class Employee < ActiveRecord::Base
 
   private
 
+  # If a manager is deleted, sets all their directs to report to the deleted manager's manager.
   def update_directs_on_delete
     unless self.directs.empty?
       self.directs.map do |emp|
