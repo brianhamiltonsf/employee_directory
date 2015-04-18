@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Location, :type => :model do
 
+    it { should respond_to(:name) }
+    it { should respond_to(:address) }
+    it { should respond_to(:address2) }
+    it { should respond_to(:city) }
+    it { should respond_to(:state) }
+    it { should respond_to(:zip) }
+    it { should respond_to(:slug) }
+    it { should respond_to(:created_at) }
+    it { should respond_to(:updated_at) }
+
     it "is invalid with a city name longer than 40 characters" do
       loc = build(:location, city: 'a' * 41)
       loc.valid?

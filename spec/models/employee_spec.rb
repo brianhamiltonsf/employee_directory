@@ -2,6 +2,24 @@ require 'rails_helper'
 
 RSpec.describe Employee, :type => :model do
 
+  it { should respond_to(:firstname) }
+  it { should respond_to(:lastname) }
+  it { should respond_to(:email) }
+  it { should respond_to(:phone) }
+  it { should respond_to(:office_number) }
+  it { should respond_to(:title) }
+  it { should respond_to(:manager_id) }
+  it { should respond_to(:manager) }
+  it { should respond_to(:department_id) }
+  it { should respond_to(:location_id) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:admin) }
+  it { should respond_to(:slug) }
+  it { should respond_to(:avatar) }
+  it { should respond_to(:fullname) }
+  it { should respond_to(:created_at) }
+  it { should respond_to(:updated_at) }
+
   it "is valid with a first name and a last name" do
     expect(build(:employee)).to be_valid
   end
@@ -20,10 +38,6 @@ RSpec.describe Employee, :type => :model do
 
   it "belongs to a department" do
     expect(build(:employee)).to belong_to(:department)
-  end
-
-  it "returns the first and last name as a string" do
-    expect(build(:employee,firstname: 'First', lastname: 'Last').name).to eq 'First Last'
   end
 
   it "does not contain duplicate email addresses" do
@@ -90,6 +104,14 @@ RSpec.describe Employee, :type => :model do
     addresses.each do |address|
       expect(build(:employee, email: address)).to be_valid
     end
+  end
+
+  context "#name" do
+
+    it "returns the first and last name as a string" do
+      expect(build(:employee,firstname: 'First', lastname: 'Last').name).to eq 'First Last'
+    end
+
   end
 
 end

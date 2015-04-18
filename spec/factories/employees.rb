@@ -10,8 +10,10 @@ FactoryGirl.define do
     title 'Manager'
     manager_id 1
     manager false
-    department_id 1
+    # association :department
     location_id 1
+    department_id 1
+    # association :location
     password 123456789
   end
 end

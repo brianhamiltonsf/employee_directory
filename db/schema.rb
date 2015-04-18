@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223043523) do
+ActiveRecord::Schema.define(version: 20150416050901) do
 
   create_table "departments", force: true do |t|
     t.string   "name"
@@ -51,13 +51,15 @@ ActiveRecord::Schema.define(version: 20150223043523) do
   add_index "employees", ["phone"], name: "index_employees_on_phone"
 
   create_table "locations", force: true do |t|
-    t.string "name"
-    t.string "address"
-    t.string "address2"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.string "slug"
+    t.string   "name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

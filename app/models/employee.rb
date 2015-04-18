@@ -59,7 +59,7 @@ class Employee < ActiveRecord::Base
     chain.reverse << self.id
   end
 
-  # not sure if this is used anywhere
+  # Returns the index of the last entry in the management chain.
   def end_of_chain
     management_chain.length - 1
   end
@@ -78,16 +78,12 @@ class Employee < ActiveRecord::Base
 
   # Returns a hash with "Manager Name - Department" as key and the manager's Employee ID as the key.
   def self.managers
-    mgr_ids = [] # stores all manager ids
-    mgr_names = [] # stores the names of all managers
     mgr_hash = {} # a hash of manager names and departments
     return_mgrs = [] # an array of 'Manager Name - Department'
     return_hash = {} # the hash that is returned by the method
 
-    # finds all managers
+    # finds all managers and creates a hash of manager names and departments
     where("manager = ?", true).each do |m|
-      mgr_ids << m.id #  adds their id to mgr_ids array
-      mgr_names << m.fullname # adds their name to the mgr_names array
       mgr_hash[m.fullname] = Department.find(m.department_id).name # key is manager name, value is manager department
     end
 
