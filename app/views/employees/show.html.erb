@@ -1,69 +1,72 @@
-<div class='col-md-3 chain'>
-  <% @employee.management_chain.each_with_index do |e,i| %>
-    <% emp = Employee.find(e) %>
-    <p>
-      <%= link_to employee_path(emp), class: 'badge' do %>
-        <%= emp.name %><br /><%= emp.title %>
-      <% end %>
-    </p>
-    <% unless i == @employee.end_of_chain %><p class='up_arrow'><i class="glyphicon glyphicon-arrow-up"></i></p><% end %>
-  <% end %>
-</div>
-<div class='col-md-4 mainleft'>
-  <h1><%= @employee.name %></h1>
-  <%= image_tag @employee.avatar_url.to_s, size: "240x240", alt: "#{@employee.slug}-photo" %>
-    <% if @employee == current_employee %>
-      <%= form_for @employee, html: { multipart: true } do |f| %>
-        <%= f.file_field :avatar %>
-        <% unless @employee.avatar.blank? %>
-          <label>
-            <%= f.check_box :remove_avatar %>
-            Delete photo
-          </label>
+<% cache @employee do %>
+  <div class='col-md-3 chain'>
+    <% @employee.management_chain.each_with_index do |e,i| %>
+      <% emp = Employee.find(e) %>
+      <p>
+        <%= link_to employee_path(emp), class: 'badge' do %>
+          <%= emp.name %><br /><%= emp.title %>
         <% end %>
-        <p><%= f.submit 'Submit', class: 'button', id: 'upload_button', disabled: true %></p>
-      <% end %>
-    <% end %>
-</div>
-<div class='col-md-4 mainright'>
-  <h3><%= @employee.title %></h3>
-  <div class='contact_details'>
-    <% unless @employee.location_id.blank? %>
-      <p>
-        Department: <%= Department.find(@employee.department_id).name unless @employee.department_id.blank? %>
       </p>
-      <p>
-        <% loc = Location.find(@employee.location_id) %>
-        <%= loc.address %> <br /> <%= loc.address2 %><br />
-        <%= loc.city %> <%= loc.state %>, <%= loc.zip %>
-      </p>
-    <% end %>
-    <% unless @employee.office_number.blank? %>
-      <p>
-        Office: <%= @employee.office_number %>
-      </p>
-      <p>
-        <%= @employee.phone %><br />
-        <%= mail_to @employee.email %>
-      </p>
+      <% unless i == @employee.end_of_chain %><p class='up_arrow'><i class="glyphicon glyphicon-arrow-up"></i></p><% end %>
     <% end %>
   </div>
-  <% if logged_in? && (current_employee.admin? || current_employee == @employee) %>
-    <div class='edit_delete'>
-      <span><%= link_to '', edit_employee_path(@employee), class: 'glyphicon glyphicon-pencil edit_delete' %></span>
-      <span><%= link_to '', @employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle edit_delete' if current_employee.admin? %></span>
+  <div class='col-md-4 mainleft'>
+    <h1><%= @employee.name %></h1>
+    <%= image_tag @employee.avatar_url.to_s, size: "240x240", alt: "#{@employee.slug}-photo" %>
+      <% if @employee == current_employee %>
+        <%= form_for @employee, html: { multipart: true } do |f| %>
+          <%= f.file_field :avatar %>
+          <% unless @employee.avatar.blank? %>
+            <label>
+              <%= f.check_box :remove_avatar %>
+              Delete photo
+            </label>
+          <% end %>
+          <p><%= f.submit 'Submit', class: 'button', id: 'upload_button', disabled: true %></p>
+        <% end %>
+      <% end %>
+  </div>
+  <div class='col-md-4 mainright'>
+    <h3><%= @employee.title %></h3>
+    <div class='contact_details'>
+      <% unless @employee.location_id.blank? %>
+        <p>
+          <% dep = Department.find(@employee.department_id) %>
+          Department: <%= link_to dep.name, department_path(dep) unless @employee.department_id.blank? %>
+        </p>
+        <p>
+          <% loc = Location.find(@employee.location_id) %>
+          <%= loc.address %> <br /> <%= loc.address2 %><br />
+          <%= loc.city %> <%= loc.state %>, <%= loc.zip %>
+        </p>
+      <% end %>
+      <% unless @employee.office_number.blank? %>
+        <p>
+          Office: <%= @employee.office_number %>
+        </p>
+        <p>
+          <%= @employee.phone %><br />
+          <%= mail_to @employee.email %>
+        </p>
+      <% end %>
+    </div>
+    <% if logged_in? && (current_employee.admin? || current_employee == @employee) %>
+      <div class='edit_delete'>
+        <span><%= link_to '', edit_employee_path(@employee), class: 'glyphicon glyphicon-pencil edit_delete' %></span>
+        <span><%= link_to '', @employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove-circle edit_delete' if current_employee.admin? %></span>
+      </div>
+    <% end %>
+  </div>
+  <% if @employee.directs.length > 0 %>
+    <div class="col-md-offset-3 col-md-9 directs">
+      <h3>Direct Reports</h3>
+        <div class='reports'>
+          <% @employee.directs.each do |emp| %>
+            <%= link_to employee_path(emp), class: 'badge' do %>
+              <%= emp.name %><br /><%= emp.title %>
+            <% end %>
+          <% end %>
+        </div>
     </div>
   <% end %>
-</div>
-<% if @employee.directs.length > 0 %>
-  <div class="col-md-offset-3 col-md-9 directs">
-    <h3>Direct Reports</h3>
-      <div class='reports'>
-        <% @employee.directs.each do |emp| %>
-          <%= link_to employee_path(emp), class: 'badge' do %>
-            <%= emp.name %><br /><%= emp.title %>
-          <% end %>
-        <% end %>
-      </div>
-  </div>
 <% end %>
